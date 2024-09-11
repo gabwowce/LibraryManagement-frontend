@@ -1,0 +1,31 @@
+// src/styles/base/_typography.scss
+@import '../themes/variables';
+
+body {
+    font-family: $primary-font;
+    color: $text-black-color;
+  }
+  
+  h1 {
+    font-size: $font-extra-large;
+  }
+  h2 {
+    font-size: $font-larger;
+  }
+  h3 {
+    font-size: $font-large;
+  }
+  h4 {
+    font-size: $font-medium;
+  }
+  h5 {
+    font-size: $font-base;
+  }
+  h6 {
+    font-size: $font-small;
+  }
+  p {
+    font-size: $font-very-small;
+  }
+  
+  

@@ -1,0 +1,45 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+// Spalvų paletė
+$primary-color: #4880FF;
+$background-color: #D5D5D5;
+$text-black-color: #202224;
+$text-gray-color: #606060;
+$status-backgroud-orange:#FFC05F;
+$status-text-orange:#FF9A00;
+$status-backgroud-red:#F27F72;
+$status-text-red:#EF3826;
+
+$green:#00B69B;
+$yellow:#FCBE2D;
+$red:#F93C65;
+
+$white:#FFFFFF;
+
+
+// Font kintamieji
+$primary-font: "Nunito Sans", sans-serif;
+
+
+// Fontų storio (weights) kintamieji
+$font-weight-extraBold: 900;
+$font-weight-bold: 700;
+$font-weight-semiBold: 600;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+
+
+// Šrifto dydžiai
+$font-very-small: 0.6rem; // 12px
+$font-small: 0.875rem; // 14px
+$font-base: 1rem;      // 16px
+$font-medium: 1.25rem;  // 20px
+$font-large: 1.5rem;  // 24px
+$font-larger: 1.75rem;  // 28px
+$font-extra-large: 2rem;  // 32px
+
+// Tarpai ir paddingai
+$spacing-small: 8px;
+$spacing-base: 16px;
+$spacing-large: 24px;

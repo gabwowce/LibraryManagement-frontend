@@ -1,0 +1,16 @@
+@import './base/reset';
+@import './base/typography';
+
+@import './layout/header';
+@import './layout/MainLayout';
+@import './layout/sidebar';
+
+@import './themes/mixins';
+@import './themes/variables';
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+

@@ -1,0 +1,19 @@
+@import '../themes/variables';
+
+$header-height: 70px; // height of the header
+$primary-bg: white;
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $header-height;
+  background-color: $primary-bg;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left:240px;
+  z-index: 1000;
+}

@@ -1,0 +1,45 @@
+@import '../themes/variables';
+$sidebar-width: 240px;
+$sidebar-bg: #444;
+$sidebar-text-color: white;
+
+.sidebar {
+  width: $sidebar-width;
+  background-color: $white;
+  position: fixed;
+  top: 0; // assuming header height
+  left: 0;
+  height: 100vh;
+  .logo {
+    color: $primary-color;
+  }
+  
+  .logo-span{
+    color: $text-black-color;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 15px;
+
+      a {
+        color: $text-black-color;
+        text-decoration: none;
+        display: block;
+        padding: 10px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+
+        &:hover,
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+        }
+      }
+    }
+  }
+}
