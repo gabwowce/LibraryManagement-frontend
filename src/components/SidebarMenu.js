@@ -1,37 +1,57 @@
 import React from 'react';
+import Icon from '../components/Icon'
+import { ReactComponent as DashboardIcon } from '../assets/dashborad.svg';
+import { ReactComponent as OverdueBooksIcon  } from '../assets/overdueBooks.svg';
+import { ReactComponent as MembersIcon } from '../assets/members.svg';
+import { ReactComponent as BooksIcon } from '../assets/books.svg';
+import { ReactComponent as LoansIcon } from '../assets/loans.svg';
 import { Link,useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
+
 
 function SidebarMenu(){
-    const [activeItem, setActiveItem] = useState('');
+    const [activeItem, setActiveItem] = useState('/');
     const location = useLocation();
 
     useEffect(() => {
         setActiveItem(location.pathname);
+        console.log(`activeItem: ${activeItem}`);
     }, [location]);
     
     return (
         <nav className="sidebar">
-        <h4 className='logo'>
-            Dash<span className='logo-span'>Labry</span>
-        </h4>
-         <ul>
-          <li className={activeItem === '/' ? 'active' : ''}>
-            <Link to="/" onClick={() => setActiveItem('/')}>Dashboard</Link>
-          </li>
-          <li className={activeItem === '/overdue-books' ? 'active' : ''}>
-            <Link to="/overdue-books" onClick={() => setActiveItem('/overdue-books')}>Overdue Books</Link>
-          </li>
-          <li className={activeItem === '/books' ? 'active' : ''}>
-            <Link to="/books" onClick={() => setActiveItem('/books')}>Books</Link>
-          </li>
-          <li className={activeItem === '/members' ? 'active' : ''}>
-            <Link to="/members" onClick={() => setActiveItem('/members')}>Members</Link>
-          </li>
-          <li className={activeItem === '/loans' ? 'active' : ''}>
-            <Link to="/loans" onClick={() => setActiveItem('/loans')}>Loans</Link>
-          </li>
-        </ul>
+            <h2 className='logo'>
+                Dash<span className='logo-span'>Labry</span>
+            </h2>
+            <ul>
+              <li className={`menu-item ${activeItem === '/' ? 'menu-item-active' : ''}`}>
+                <Link to="/" onClick={() => setActiveItem('/')}>
+                  <DashboardIcon className='icon' /> <h6>Dashboard</h6>
+                </Link>
+              </li>
+              <li className={`menu-item ${activeItem === '/overdue-books' ? 'menu-item-active' : ''}`}>
+                <Link to="/overdue-books" onClick={() => setActiveItem('/overdue-books')}>
+                  <OverdueBooksIcon className='icon' /> <h6>Overdue Books</h6>
+                </Link>
+              </li>
+              <li className={`menu-item ${activeItem === '/books' ? 'menu-item-active' : ''}`}>
+                <Link to="/books" onClick={() => setActiveItem('/books')}>
+                  <BooksIcon className='icon' /><h6>Books</h6>
+                </Link>
+              </li>
+              <li className={`menu-item ${activeItem === '/members' ? 'menu-item-active' : ''}`}>
+                <Link to="/members" onClick={() => setActiveItem('/members')}>
+                  <MembersIcon className='icon' /><h6>Members</h6>
+                </Link>
+              </li>
+              <li className={`menu-item ${activeItem === '/loans' ? 'menu-item-active' : ''}`}>
+                <Link to="/loans" onClick={() => setActiveItem('/loans')}>
+                  <LoansIcon className='icon'/><h6>Loans</h6>
+                </Link>
+              </li>
+            </ul>
       </nav>
       );
     }

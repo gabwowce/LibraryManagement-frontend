@@ -7,13 +7,15 @@ $primary-bg: white;
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-end;
   align-items: center;
   height: $header-height;
   background-color: $primary-bg;
   position: fixed;
-  width: 100%;
+  width: calc(100% - 240px);
   top: 0;
   left:240px;
+  border-bottom: 1px solid $border-gray;
   z-index: 1000;
+  overflow: hidden;
 }

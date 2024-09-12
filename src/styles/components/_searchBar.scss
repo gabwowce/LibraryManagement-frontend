@@ -1,0 +1,27 @@
+@import '../themes/variables';
+
+.search{
+    margin-right: auto;
+    margin-left: 50px;
+    display: flex;
+    flex: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 8px 30px 8px 15px;
+    border-radius: 20px;
+    background: $background-color;
+    border: 1px solid $border-gray;
+
+    input{
+        flex: 1;
+        width: 300px;
+        border: none;
+        font-size: $font-base;
+        font-weight: $font-weight-normal;
+        outline: none;
+        color: $text-gray-color;
+        background: $background-color;
+        
+    }
+}

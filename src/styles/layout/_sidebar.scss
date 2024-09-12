@@ -7,11 +7,22 @@ $sidebar-text-color: white;
   width: $sidebar-width;
   background-color: $white;
   position: fixed;
-  top: 0; // assuming header height
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  top: 0; 
   left: 0;
   height: 100vh;
+  border-right: 1px solid $border-gray;
+
+  h2{
+    margin:17px 0;
+  }
+
   .logo {
     color: $primary-color;
+    font-weight: $font-weight-extraBold;
   }
   
   .logo-span{
@@ -24,22 +35,72 @@ $sidebar-text-color: white;
     margin: 0;
 
     li {
-      margin-bottom: 15px;
+
+      position: relative;
 
       a {
         color: $text-black-color;
         text-decoration: none;
-        display: block;
-        padding: 10px 15px;
-        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        align-items: center;
+        padding: 15px 35px 15px 25px;
+        border-radius: 6px;
         transition: background-color 0.3s;
+        font-size: $font-small;
+        &:hover{
+          // background-color: $background-color;
 
-        &:hover,
-        &.active {
-          background-color: $primary-color;
-          color: $white;
+        }
+
+        h6{
+          margin: 0;
+          font-weight: $font-weight-normal;
+          margin-left: 38px;
         }
       }
+
+      &.menu-item-active a {
+        background-color: $primary-color;
+        color: $sidebar-text-color; 
+      }
+      .icon {
+        position: absolute;
+        left: 30px;
+        width: 18px;
+        height: 20px;
+        color: #202224;
+      }
+      &.menu-item-active .icon {
+        color: $white;
+      }
+
+      &::before {
+        content: ""; 
+        position: absolute;
+        top: 50%;
+        left: -58px;
+        width: 40px; 
+        height: 100%; 
+        border-radius: 6px;
+        background-color: $primary-color; 
+        transform: translateY(-50%); 
+        opacity: 0;
+      }
+
+      &:hover::before {
+        background-color: $primary-color;
+        opacity: 1;
+      }
+
+      &.menu-item-active::before{
+        opacity: 1;
+      }
     }
+
+
+
+
   }
 }
