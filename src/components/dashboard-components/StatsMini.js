@@ -1,5 +1,5 @@
 import React from "react";
-import ff from '../../assets/StatsMini/down.png'
+
 
 function StatsMini({totalInfo}){
 
