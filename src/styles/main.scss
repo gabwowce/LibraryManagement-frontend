@@ -4,12 +4,17 @@
 @import './layout/header';
 @import './layout/MainLayout';
 @import './layout/sidebar';
+@import './layout/dashborad';
 
 @import './themes/mixins';
 @import './themes/variables';
 
 @import './components/searchBar';
 @import './components/profile';
+@import './components/statsMini';
+@import './components/lineChart';
+
+
 
 body{
     margin: 0;

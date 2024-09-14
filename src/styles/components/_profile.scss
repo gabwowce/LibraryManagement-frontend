@@ -6,7 +6,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: 75px;
 
     img{
         height: 44px;
@@ -23,11 +22,25 @@
     }
     h5{
         font-weight: $font-weight-bold;
+        font-size: $font-medium;
         color:#404040;
     }
     h6{
         font-weight:$font-weight-semiBold;
+        font-size: $font-base;
         color:#565656;
     }
+
+
+    @include respond-to("small"){
+        h5 {
+            font-size: $font-base;
+        }
+        h6 {
+            font-size: $font-small;
+        }
+
+                      
+      }
 }
 

@@ -1,4 +1,5 @@
 @import '../themes/variables';
+@import '../themes/mixins';
 
 $header-height: 70px; // height of the header
 $primary-bg: white;
@@ -12,10 +13,20 @@ header {
   height: $header-height;
   background-color: $primary-bg;
   position: fixed;
-  width: calc(100% - 240px);
+  width: calc(100vw - 401px);
   top: 0;
   left:240px;
   border-bottom: 1px solid $border-gray;
   z-index: 1000;
+  padding: 0 5rem;
   overflow: hidden;
+}
+
+@include respond-to("small"){
+  header {
+    padding: 0 3rem;
+    
+    width: calc(100vw - 337px);
+  }
+                
 }

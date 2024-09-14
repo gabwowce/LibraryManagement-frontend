@@ -23,7 +23,8 @@ const MainLayout = () => {
 
     allData ? 
     (
-      screenWidth>900 ? 
+      screenWidth>1130 ?  
+      
       (
         <div className="layout">
         <SidebarMenu/>

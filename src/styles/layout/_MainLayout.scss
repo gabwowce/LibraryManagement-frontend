@@ -1,4 +1,6 @@
 @import '../themes/variables';
+@import '../themes/mixins';
+
 .layout {
   background-color: $background-color;
   display: flex;
@@ -9,6 +11,14 @@
   margin-top: 70px; 
   margin-left: 240px; 
   height: 100vh;
-  padding: 1rem;
+  padding: 2rem 5rem;
   flex: 1;
+}
+
+
+@include respond-to("small"){
+  .content {
+    padding: 2rem 3rem;
+  }
+                
 }

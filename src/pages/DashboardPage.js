@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import StatsMini from '../components/dashboard-components/StatsMini';
-import StatsBig from '../components/dashboard-components/StatsBig';
+import MyLineChart from '../components/dashboard-components/LineChart';
 import IncomingBooks from '../components/dashboard-components/IncomingBooks';
 import config from '../config';
 import {useDataContext} from '../context/DataContext'
@@ -16,7 +16,7 @@ function DashboardPage() {
 
       <h1>Dashboard</h1>
 
-      <div className='statistics'>
+      <div className='stats-container'>
         {
              statsInfo ? 
             (
@@ -34,9 +34,9 @@ function DashboardPage() {
         
       </div>
 
-      {/* <StatsBig/>
+      <MyLineChart/>
 
-      <IncomingBooks/> */}
+      {/* <IncomingBooks/> */}
 
     </div>
   );
