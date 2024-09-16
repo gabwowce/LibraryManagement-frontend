@@ -7,6 +7,7 @@ export const DataProvider = ({children})=>{
     const [allData, setAllData] = useState(false);
     const [statsInfo, setStatsInfo] = useState([]);
     const [loanData, setloanData] = useState([]);
+    const [incomingBooksData, setIncomingBooksData] = useState([]);
 
     const fetchMiniStats = async () =>{
         try {
@@ -36,13 +37,28 @@ export const DataProvider = ({children})=>{
         }
     }
 
+    const fetchIncomingBooksData= async () =>{
+        try {
+            const response = await fetch(`${config.baseURL}/api/incomingBooks`);
+            if (!response.ok){
+                setIncomingBooksData(false);
+            }
+            const data = await response.json();
+            setIncomingBooksData(data);
+        } catch (error) {
+            console.error("Error fetching IncomingBooksData: ", error);
+            setIncomingBooksData([]);
+        }
+    }
+
     useEffect(() => {
         fetchMiniStats();
         fetchLoanData();
+        fetchIncomingBooksData();
     }, []);
 
     useEffect(() => {
-        if (statsInfo.length > 0 || loanData.length > 0) {
+        if (statsInfo.length > 0 || loanData.length > 0 || incomingBooksData > 0)  {
             setAllData(true);
         }else {
             setAllData(false);
@@ -50,7 +66,7 @@ export const DataProvider = ({children})=>{
     }, [statsInfo]);
 
     return(
-        <DataContext.Provider value={{statsInfo, allData, loanData}}>
+        <DataContext.Provider value={{statsInfo, allData, loanData, incomingBooksData}}>
              {children}
         </DataContext.Provider>
     );

@@ -1,5 +1,4 @@
 import React from "react";
-import config from '../../config';
 
 function StatsMini({totalInfo}) {
     return (

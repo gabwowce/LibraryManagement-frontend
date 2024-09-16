@@ -1,15 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import StatsMini from '../components/dashboard-components/StatsMini';
+import DataTable from '../components/DataTable';
 import MyLineChart from '../components/dashboard-components/LineChart';
-import IncomingBooks from '../components/dashboard-components/IncomingBooks';
-import config from '../config';
 import {useDataContext} from '../context/DataContext'
 import LoadingPage from './LoadingPage';
+import { useTableColumnsContext } from '../context/TableColumnsContext';
+
 
 function DashboardPage() {
-  const {statsInfo} = useDataContext();
-  console.log('statsInfo:', statsInfo); 
+  const {statsInfo, incomingBooksData} = useDataContext();
+  const {incomingBooksTableColumns} = useTableColumnsContext();
+
 
   return (
     <div className='dashboard-container'>
@@ -35,8 +37,9 @@ function DashboardPage() {
       </div>
 
       <MyLineChart/>
-
-      {/* <IncomingBooks/> */}
+      
+      <DataTable tableColumns={incomingBooksTableColumns} tableData={incomingBooksData}/>
+      
 
     </div>
   );

@@ -19,6 +19,7 @@
 @include respond-to("small"){
   .content {
     padding: 2rem 3rem;
+    background-color: red;
   }
                 
 }
