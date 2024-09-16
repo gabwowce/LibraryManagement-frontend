@@ -6,7 +6,7 @@ import MyLineChart from '../components/dashboard-components/LineChart';
 import {useDataContext} from '../context/DataContext'
 import LoadingPage from './LoadingPage';
 import { useTableColumnsContext } from '../context/TableColumnsContext';
-
+import IncomingBooksDataTable from '../components/IncomingBooksDataTable'
 
 function DashboardPage() {
   const {statsInfo, incomingBooksData} = useDataContext();
@@ -38,7 +38,7 @@ function DashboardPage() {
 
       <MyLineChart/>
       
-      <DataTable tableColumns={incomingBooksTableColumns} tableData={incomingBooksData}/>
+      <IncomingBooksDataTable tableColumns={incomingBooksTableColumns} tableData={incomingBooksData}/>
       
 
     </div>

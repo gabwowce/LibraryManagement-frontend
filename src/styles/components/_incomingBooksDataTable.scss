@@ -1,27 +1,38 @@
 @import '../themes/variables';
 
-.data-table {
+.incbooks-table-container {
+    background-color: $white;
+    border-radius: 14px;
+    padding: 37px 32px;
+
+    @include respond-to("small") {
+        padding: 30px 25px;
+    }
+}
+
+.incbooks-data-table {
     width: 100%;
-    border-collapse: separate; 
+    border-collapse: separate;
     border-spacing: 0;
     border-radius: 14px;
-    border: 1px solid #e0e0e0;
+    margin-top: 35px;
 
     thead {
         th {
-            background-color: $very-light-gray;
+            background-color: $very-light-gray-header;
             color: $text-lighter-black-color;
             font-weight: bold;
             text-align: left;
             padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
 
             &:first-child {
                 border-top-left-radius: 14px;
+                border-bottom-left-radius: 14px;
             }
 
             &:last-child {
                 border-top-right-radius: 14px;
+                border-bottom-right-radius: 14px;
             }
 
             &.center {
@@ -34,10 +45,10 @@
         td {
             color: $text-black-color;
             font-size: 14px;
-            padding: 12px 15px;
+            padding: 20px 15px;
             border-bottom: 1px solid #e0e0e0;
             background-color: $white;
-
+            
             &.center {
                 text-align: center;
             }
@@ -51,20 +62,21 @@
     }
 }
 
-.daysOverdue {
+.status {
+    width: 93px;
     display: inline-block;
     padding: 4px 8px;
-    border-radius: 12px;
+    border-radius: 14px;
     color: $white;
     font-weight: bold;
     text-align: center;
 
-    &.red-warning {
-        background-color: green;
+    &.Delivered {
+        background-color: $green;
     }
 
-    &.yellow-warning {
-        background-color: yellow;
-        color: black; // Ensure text is readable on yellow
+    &.Pending {
+        background-color: $yellow;
+        color: $white; // Ensure text is readable on yellow
     }
 }

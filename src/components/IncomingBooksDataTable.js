@@ -1,27 +1,29 @@
 import React from "react";
 
-function DataTable({ tableColumns, tableData }) {
+function IncomingBooksDataTable({ tableColumns, tableData }) {
     return (
-        <table className="data-table">
-            <thead>
+        <div className="incbooks-table-container">
+            <h2 className='incbooks-table-title'>Incoming Books</h2>
+            <table className="incbooks-data-table">
+                <thead>
                     <tr>
                         {tableColumns.map((column, index) => (
                             <th
                             key={index}
-                            className={column.key === 'id' || column.key === 'loanStartDate' || column.key === 'daysOverdue' ? 'center' : ''}
+                            className={column.key === 'amount' || column.key === 'status' ? 'center' : ''}
                             >
                             {column.header}
                             </th>
                         ))}
                     </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                     {tableData.map((rowData, rowIndex) => (
                         <tr key={rowIndex}>
                             {tableColumns.map((column, colIndex) => (
-                                 <td key={colIndex} className={column.key === 'id' || column.key === 'loanStartDate' || column.key === 'daysOverdue' ? 'center' : ''}>
-                                    {column.key === 'daysOverdue' ? (
-                                        <span className={`daysOverdue ${rowData[column.key] > 100 ? 'red-warning' : 'yellow-warning'}`}>
+                                 <td key={colIndex} className={column.key === 'amount' || column.key === 'status' ? 'center' : ''}>
+                                    {column.key === 'status' ? (
+                                        <span className={`status ${rowData[column.key]}`}>
                                             {rowData[column.key]}
                                         </span>
                                     ) : (
@@ -32,8 +34,10 @@ function DataTable({ tableColumns, tableData }) {
                         </tr>
                     ))}
                 </tbody>
-        </table>
+            </table>
+        </div>
+        
     );
 }
 
-export default DataTable;
+export default IncomingBooksDataTable;
