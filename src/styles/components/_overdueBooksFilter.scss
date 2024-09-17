@@ -1,0 +1,130 @@
+@import '../themes/variables';
+@import '../themes/mixins';
+
+.overdue-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    background-color: $very-light-gray;
+    border: 1px solid $border-gray;
+    border-radius: 10px;
+    margin: 15px 0;
+    width: 592px ;
+
+    .filter-img {
+        border-right: 1px solid $border-gray;
+        padding: 20px 18px;
+    }
+
+    .filter-hint {
+        border-right: 1px solid $border-gray;
+        padding: 26px 18px;
+
+        h4{
+            font-size: 14px;
+        }
+    }
+
+    .loan-start-day-filter,
+    .days-overdue-filter,
+    .reset-filter-btn {
+        position: relative;
+    }
+
+    .filter-btn {
+        all: unset;
+        padding: 26px 36px 26px 18px;
+        border-right: 1px solid $border-gray;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: $font-weight-bold;
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        position: relative; 
+    
+        &::after {
+            content: '🢓'; 
+            margin-left: 10px;
+            color: $text-gray-color;
+            font-size: 30px; 
+          
+            position: absolute;
+            right: 15px; 
+            top: 65%; 
+            transform: translateY(-50%); 
+        }
+    
+        &:hover {
+            background-color: $hover-light-gray;
+        }
+    
+        &.open::after {
+            transform: translateY(-100%) rotate(180deg); 
+            
+        }
+        &.open{
+            background-color: $hover-light-gray;
+        }
+    }
+    
+
+    .calendar-input{
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #fff;
+    }
+
+    .reset-btn {
+    all: unset;
+    padding: 25px 18px;
+    color: $reset-red;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+    transition: background-color 0.2s;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    align-items: center; // Vertikali lygis su piktograma ir tekstu
+    justify-content: center;
+
+    img {
+        margin-right: 8px; // Tarptarpas tarp ikonėlės ir teksto
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        background-color: $hover-light-gray;
+    }
+    }
+
+    .custom-dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FCFDFD;
+        border: 1px solid #D5D5D5;
+        border-radius: 4px;
+        z-index: 1;
+    
+        .custom-dropdown-option {
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+    
+            &:hover {
+                background-color: #4880FF;
+                color: white;
+            }
+        }
+    }
+    
+ 
+
+}

@@ -37,6 +37,9 @@
                 font-size: 30px; 
                 transition: content 0.1s ease; 
             }
+            &.open::after {
+                transform: translateY(-100%) rotate(180deg); 
+            }
             
           }
 
@@ -103,4 +106,7 @@
             top: 30px;
         }
     }
+
+
+    
 }

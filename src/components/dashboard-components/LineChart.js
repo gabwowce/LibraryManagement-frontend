@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   LineChart as RechartsLineChart,
   Line,
@@ -16,6 +16,7 @@ function MyLineChart() {
   console.log('Loan data:', loanData);
   const [selectedYear, setSelectedYear] = useState(2023);
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const filteredData = loanData.filter(item => item.year === selectedYear);
 
@@ -31,10 +32,21 @@ function MyLineChart() {
     return monthNames[month - 1] || month;
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="line-chart-container"> 
       <h2 className='line-chart-title'>Loan Details</h2>
-      <div className="custom-dropdown">
+      <div className="custom-dropdown" ref={dropdownRef}>
         <div 
           className={`custom-dropdown-selected ${isOpen ? 'open' : ''}`}
           onClick={() => setIsOpen(!isOpen)}

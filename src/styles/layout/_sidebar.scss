@@ -47,7 +47,7 @@ $sidebar-text-color: white;
         flex-direction: row;
         justify-content:flex-start;
         align-items: center;
-        padding: 15px 20px 15px 10px;
+        padding: 15px 35px 15px 35px;
         border-radius: 6px;
         transition: background-color 0.3s;
         font-size: $font-small;
@@ -59,7 +59,7 @@ $sidebar-text-color: white;
         h6{
           margin: 0;
           font-weight: $font-weight-semiBold;
-          font-size: $font-medium;
+          font-size: $font-small;
           margin-left: 40px;
         }
       }
@@ -101,15 +101,15 @@ $sidebar-text-color: white;
         opacity: 1;
       }
 
-      @include respond-to("small"){
-        &::before {
-          left: -50px;
-        }
-        a {
-          padding: 15px 35px 15px 35px;
-        }
+      // @include respond-to("small"){
+      //   &::before {
+      //     left: -50px;
+      //   }
+      //   a {
+      //     padding: 15px 35px 15px 35px;
+      //   }
                       
-      }
+      // }
 
 
 
@@ -119,12 +119,12 @@ $sidebar-text-color: white;
 
   }
 
-  @include respond-to("small"){
-    .menu-item h6 {
-      font-size: $font-small !important;
-    }
+  // @include respond-to("small"){
+  //   .menu-item h6 {
+  //     font-size: $font-small !important;
+  //   }
                   
-  }
+  // }
 
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import DataTable from '../components/DataTable';
 import { useTableColumnsContext } from '../context/TableColumnsContext';
 import { useDataContext } from '../context/DataContext';
+import OverdueBooksFilter from '../components/OverdueBooksFilter';
 
 function OverdueBooksPage() {
   const {overdueBooksTableColumns} = useTableColumnsContext();
@@ -12,7 +13,7 @@ function OverdueBooksPage() {
     <div>
       <h1>Overdue Books</h1>
       
-      {/* <OverdueBooksFilter/> */}
+      <OverdueBooksFilter/>
 
       <DataTable tableColumns={overdueBooksTableColumns} tableData={overdueBooksData}/>
     </div>

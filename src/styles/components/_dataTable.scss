@@ -1,11 +1,75 @@
 @import '../themes/variables';
+@import '../themes/mixins';
 
+
+.data-table-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 15px 0;
+
+    .data-table-page-navigation{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Tinkamai paskirsto info ir controls */
+        align-items: center;
+        margin: 15px 0;
+
+        .pagination-info{
+            color: $text-gray-color;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+           
+        
+            button {
+                padding: 8px 18px;
+                border: 1px solid $border-gray;
+                border-radius: 8px;
+                background-color: $very-light-gray;
+                color: $text-lighter-gray;
+                font-weight: $font-weight-semiBold;
+                cursor: pointer;
+
+        
+                &:disabled {
+                    
+                    color: $text-gray-color2;
+                    cursor:auto;
+                }
+                &:not(:disabled):hover {
+                    background-color: $hover-light-gray;
+                    
+                }
+
+                &:last-child {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius:0;
+                    border-left: 0;
+                }
+    
+                &:first-child {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+            }
+        }
+    }
+
+
+
+}
 .data-table {
     width: 100%;
     border-collapse: separate; 
-    border-spacing: 0;
+    border-spacing: 0px;
     border-radius: 14px;
     border: 1px solid #e0e0e0;
+    overflow: hidden;
 
     thead {
         th {
@@ -41,30 +105,39 @@
             &.center {
                 text-align: center;
             }
+
         }
 
         tr {
+            &:last-child {
+                td {
+                    border-bottom: 0px; 
+                }
+            }
             &:hover {
                 background-color: $very-light-gray;
             }
+         
         }
     }
 }
 
 .daysOverdue {
     display: inline-block;
-    padding: 4px 8px;
-    border-radius: 12px;
+    width: 93px;
+    padding: 4px 0px;
+    border-radius: 4px;
     color: $white;
     font-weight: bold;
     text-align: center;
 
     &.red-warning {
-        background-color: green;
+        background-color: $status-backgroud-red;
+        color: $status-text-red; 
     }
 
     &.yellow-warning {
-        background-color: yellow;
-        color: black; // Ensure text is readable on yellow
+        background-color: $status-backgroud-orange;
+        color: $status-text-orange; 
     }
 }
