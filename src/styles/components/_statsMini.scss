@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-grow: 1;
-    padding: $spacing-base;
+    padding: 20px;
 
     .main-info {
         display: flex;
@@ -37,6 +37,7 @@
             .total {
                 color: $text-lighter-gray;
                 font-weight: $font-weight-semiBold;
+                
             }
             .amount {
                 color: $text-black-color;
@@ -53,7 +54,7 @@
         gap: 3px;
 
         .procentage {
-            color: $green;
+           
             font-weight: $font-weight-semiBold;
         }
         .down-up-stats-text {
@@ -62,16 +63,17 @@
     }
 
     @include respond-to("small") {
-        padding: $spacing-small;
+        padding: 14px;
 
         .main-info {
             .stats-icon {
                 padding-right: 5px;
             }
             .stats-icon{
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
+           
         }
     }
 }

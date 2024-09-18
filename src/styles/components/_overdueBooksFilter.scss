@@ -2,7 +2,7 @@
 @import '../themes/mixins';
 
 .overdue-filter-container {
-    display: flex;
+    display: inline-flex; 
     align-items: center;
     justify-content: flex-start;
     flex-direction: row;
@@ -10,7 +10,7 @@
     border: 1px solid $border-gray;
     border-radius: 10px;
     margin: 15px 0;
-    width: 592px ;
+    padding: 0; 
 
     .filter-img {
         border-right: 1px solid $border-gray;
@@ -108,8 +108,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #FCFDFD;
-        border: 1px solid #D5D5D5;
+        background-color: $white;
         border-radius: 4px;
         z-index: 1;
     
@@ -123,6 +122,9 @@
                 color: white;
             }
         }
+    }
+    .order{
+        border: 1px solid #D5D5D5;
     }
     
  

@@ -8,14 +8,15 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin: 15px 0;
-
     .data-table-page-navigation{
+ 
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between; /* Tinkamai paskirsto info ir controls */
         align-items: center;
         margin: 15px 0;
+ 
 
         .pagination-info{
             color: $text-gray-color;
@@ -77,7 +78,7 @@
             color: $text-lighter-black-color;
             font-weight: bold;
             text-align: left;
-            padding: 12px 15px;
+            padding: 15px 4px;
             border-bottom: 1px solid #e0e0e0;
 
             &:first-child {
@@ -98,9 +99,12 @@
         td {
             color: $text-black-color;
             font-size: 14px;
-            padding: 12px 15px;
+            // padding: 0 15px;
             border-bottom: 1px solid #e0e0e0;
             background-color: $white;
+            width: auto;
+
+            
 
             &.center {
                 text-align: center;
@@ -109,6 +113,7 @@
         }
 
         tr {
+            height: 60px;
             &:last-child {
                 td {
                     border-bottom: 0px; 
@@ -140,4 +145,32 @@
         background-color: $status-backgroud-orange;
         color: $status-text-orange; 
     }
+
+   
+}
+
+.remainingFree{
+    display: inline-block;
+    width: 106px;
+    padding: 4px 0px;
+    border-radius: 4px;
+    color: $white;
+    font-weight: bold;
+    text-align: center;
+
+
+    &.green-frame{
+        color: $green; 
+        background-color:$green-background;
+    }
+    &.red-frame{
+        color: $red; 
+        background-color:$red-background;
+    }
+}
+
+
+.no-data h2{
+    margin-top: 20px;
+    color: $text-gray-color;
 }

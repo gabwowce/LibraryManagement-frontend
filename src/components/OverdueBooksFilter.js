@@ -1,28 +1,48 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CustomDatePicker from './CustomDatePicker'; 
 
-function OverdueBooksFilter() {
+function OverdueBooksFilter({ onApplyFilters }) {
     const [isLoanStartOpen, setLoanStartOpen] = useState(false);
     const [isDaysOverdueOpen, setDaysOverdueOpen] = useState(false);
-    const [startDate, setStartDate] = useState(new Date());
-    const [selectedOrder, setSelectedOrder] = useState('Ascending');
+    const [startDate, setStartDate] = useState(null); 
+    const [selectedOrder, setSelectedOrder] = useState(''); // Default order
+    const [isFilterApplied, setIsFilterApplied] = useState(false);
 
     const loanStartRef = useRef(null);
     const daysOverdueRef = useRef(null);
 
     const handleStartDayFilter = () => {
-        setLoanStartOpen((prevState) => !prevState);
-        setDaysOverdueOpen(false);
+        setLoanStartOpen(prevState => !prevState);
+        if (isDaysOverdueOpen) setDaysOverdueOpen(false); // Close other filter
     };
 
     const handleDaysOverdueFilter = () => {
-        setDaysOverdueOpen((prevState) => !prevState);
-        setLoanStartOpen(false);
+        setDaysOverdueOpen(prevState => !prevState);
+        if (isLoanStartOpen) setLoanStartOpen(false); // Close other filter
     };
 
     const handleOrderChange = (order) => {
         setSelectedOrder(order);
         setDaysOverdueOpen(false);
+        setIsFilterApplied(true); // Mark filter as applied
+    };
+
+    const handleStartDateChange = () => {
+        setLoanStartOpen(false);
+        setIsFilterApplied(true);
+    };
+
+    const handleResetFilters = () => {
+        setStartDate(null); 
+        setSelectedOrder(''); 
+        setLoanStartOpen(false);
+        setDaysOverdueOpen(false);
+        setIsFilterApplied(true); // Mark filter as applied
+    };
+
+    const handleApplyFilters = () => {
+        onApplyFilters(startDate, selectedOrder); 
+        setIsFilterApplied(false); 
     };
 
     useEffect(() => {
@@ -40,6 +60,23 @@ function OverdueBooksFilter() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    useEffect(() => {
+        if (!isLoanStartOpen && !isDaysOverdueOpen && isFilterApplied) {
+            handleApplyFilters();
+        }
+    }, [isLoanStartOpen, isDaysOverdueOpen, isFilterApplied]);
+
+    useEffect(() => {
+        if (isFilterApplied) {
+            handleApplyFilters();
+        }
+    }, [startDate, selectedOrder]);
+
+    const formatDate = (date) => {
+        if (!date) return 'Date'; 
+        return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    };
+
     return (
         <div className="overdue-filter-container">
             <div className="filter-img">
@@ -50,13 +87,15 @@ function OverdueBooksFilter() {
             </div>
             <div className="loan-start-day-filter" ref={loanStartRef}>
                 <button className={`filter-btn ${isLoanStartOpen ? 'open' : ''}`} onClick={handleStartDayFilter}>
-                    Date
+                    {formatDate(startDate)} 
                 </button>
                 {isLoanStartOpen && (
                     <div className="custom-dropdown-options">
                         <CustomDatePicker
-                            startDate={startDate}
+                            startDate={startDate || new Date()} 
                             onChange={(date) => setStartDate(date)}
+                            onClick={handleStartDateChange}
+                            
                         />
                     </div>
                 )}
@@ -66,7 +105,7 @@ function OverdueBooksFilter() {
                     Days Overdue
                 </button>
                 {isDaysOverdueOpen && (
-                    <div className="custom-dropdown-options">
+                    <div className="custom-dropdown-options order">
                         <div className="custom-dropdown-option" onClick={() => handleOrderChange('Ascending')}>
                             Ascending
                         </div>
@@ -77,7 +116,7 @@ function OverdueBooksFilter() {
                 )}
             </div>
             <div className="reset-filter-btn">
-                <button className="reset-btn">
+                <button className="reset-btn" onClick={handleResetFilters}>
                     <img src="/reset.png" alt="reset icon" /> Reset Filters
                 </button>
             </div>

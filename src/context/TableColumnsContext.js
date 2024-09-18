@@ -18,12 +18,30 @@ export const TableColumnsProvider = ({children})=>{
         { header: 'Author', key: 'author' },
         { header: 'Borrower Name', key: 'borrowerName' },
         { header: 'Loan Start Date', key: 'loanStartDate' },
+        { header: 'Loan End Date', key: 'loanEndDate' },
         { header: 'Days Overdue', key: 'daysOverdue' },
       ];  
+
+    const centeredOverdueBooksTableColumns = ['id', 'loanStartDate', 'loanEndDate', 'daysOverdue'];
+
+    const booksTableColumns = [
+      { header: 'Image', key: 'imagePath' },
+      { header: 'Title', key: 'name' },
+      { header: 'Author', key: 'author' },
+      { header: 'Release Year', key: 'yearOfRelease' },
+      { header: 'Category', key: 'category' },
+      { header: 'Amount', key: 'amount' },
+      { header: 'Remaining Free', key: 'remainingFree' },
+    ];  
+
+  const centeredBooksTableColumns = ['imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category'];
+
+
+
     
 
     return(
-        <TableColumnsContext.Provider value={{incomingBooksTableColumns, overdueBooksTableColumns}}>
+        <TableColumnsContext.Provider value={{incomingBooksTableColumns, overdueBooksTableColumns, centeredOverdueBooksTableColumns, booksTableColumns, centeredBooksTableColumns}}>
              {children}
         </TableColumnsContext.Provider>
     );

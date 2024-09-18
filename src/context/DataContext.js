@@ -9,6 +9,7 @@ export const DataProvider = ({children})=>{
     const [loanData, setloanData] = useState([]);
     const [incomingBooksData, setIncomingBooksData] = useState([]);
     const [overdueBooksData, setOverdueBooksData] = useState([]);
+    const [booksData, setBooksData] = useState([]);
 
     const fetchMiniStats = async () =>{
         try {
@@ -67,15 +68,31 @@ export const DataProvider = ({children})=>{
         }
     }
 
+    const fetchBooksData = async () => {
+        try {
+            const response = await fetch(`${config.baseURL}/api/books`);
+            if (!response.ok) {
+                setBooksData([]);
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setBooksData(data);
+        } catch (error) {
+            console.error("Error fetching BooksData: ", error);
+            setBooksData([]); 
+        }
+    }
+
     useEffect(() => {
         fetchMiniStats();
         fetchLoanData();
         fetchIncomingBooksData();
         fetchOverdueBooksData();
+        fetchBooksData();
     }, []);
 
     useEffect(() => {
-        if (statsInfo.length > 0 || loanData.length > 0 || incomingBooksData.length > 0 || overdueBooksData.length > 0)  {
+        if (statsInfo.length > 0 || loanData.length > 0 || incomingBooksData.length > 0 || overdueBooksData.length > 0 || booksData.length > 0)  {
             setAllData(true);
         }else {
             setAllData(false);
@@ -83,7 +100,7 @@ export const DataProvider = ({children})=>{
     }, [statsInfo]);
 
     return(
-        <DataContext.Provider value={{statsInfo, allData, loanData, incomingBooksData, overdueBooksData}}>
+        <DataContext.Provider value={{statsInfo, allData, loanData, incomingBooksData, overdueBooksData, booksData}}>
              {children}
         </DataContext.Provider>
     );
