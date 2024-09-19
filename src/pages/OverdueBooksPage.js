@@ -89,10 +89,10 @@ function OverdueBooksPage() {
                 renderCell={renderCell}/>
 
       <OverdueBookDetailsPopup 
-            isOpen={openDetailsPopup}
-            onClose={closePopup}
-            overudeBookData={overdueBookData}
-            />
+        isOpen={openDetailsPopup}
+        onClose={closePopup}
+        overdueBookData={overdueBookData} 
+      />
     </div>
   );
 }

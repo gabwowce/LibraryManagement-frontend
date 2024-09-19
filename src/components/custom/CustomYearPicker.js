@@ -1,7 +1,7 @@
 import React from 'react';
 
 const currentYear = new Date().getFullYear();
-const years = Array.from({ length: 21 }, (_, i) => currentYear - i);
+const years = Array.from({ length: 50 }, (_, i) => currentYear - i);
 
 function CustomYearPicker({ selectedYear, onChange }) {
   return (

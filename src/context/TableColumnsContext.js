@@ -13,7 +13,7 @@ export const TableColumnsProvider = ({children})=>{
       ];
 
     const overdueBooksTableColumns = [
-        { header: 'Book ID', key: 'id' },
+        { header: 'ID', key: 'id' },
         { header: 'Title', key: 'title' },
         { header: 'Author', key: 'author' },
         { header: 'Borrower Name', key: 'borrowerName' },

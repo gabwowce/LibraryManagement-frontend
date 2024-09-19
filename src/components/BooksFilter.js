@@ -14,24 +14,24 @@ function BooksFilter({ onApplyFilters }) {
 
     const handleYearFilter = () => {
         setYearOpen(prevState => !prevState);
-        if (isCategoryOpen) setCategoryOpen(false); // Close other filter
+        if (isCategoryOpen) setCategoryOpen(false); 
     };
 
     const handleCategoryFilter = () => {
         setCategoryOpen(prevState => !prevState);
-        if (isYearOpen) setYearOpen(false); // Close other filter
+        if (isYearOpen) setYearOpen(false); 
     };
 
     const handleYearChange = (year) => {
         setSelectedYear(year);
         setYearOpen(false);
-        setIsFilterApplied(true); // Mark filter as applied
+        setIsFilterApplied(true); 
     };
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
         setCategoryOpen(false);
-        setIsFilterApplied(true); // Mark filter as applied
+        setIsFilterApplied(true); 
     };
 
     const handleResetFilters = () => {
@@ -39,7 +39,7 @@ function BooksFilter({ onApplyFilters }) {
         setSelectedCategory(''); 
         setYearOpen(false);
         setCategoryOpen(false);
-        setIsFilterApplied(true); // Mark filter as applied
+        setIsFilterApplied(true); 
     };
 
     const handleApplyFilters = () => {

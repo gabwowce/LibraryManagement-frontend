@@ -85,21 +85,6 @@ function OverdueBooksFilter({ onApplyFilters }) {
             <div className="filter-hint">
                 <h4>Filter By</h4>
             </div>
-            <div className="loan-start-day-filter" ref={loanStartRef}>
-                <button className={`filter-btn ${isLoanStartOpen ? 'open' : ''}`} onClick={handleStartDayFilter}>
-                    {formatDate(startDate)} 
-                </button>
-                {isLoanStartOpen && (
-                    <div className="custom-dropdown-options">
-                        <CustomDatePicker
-                            startDate={startDate || new Date()} 
-                            onChange={(date) => setStartDate(date)}
-                            onClick={handleStartDateChange}
-                            
-                        />
-                    </div>
-                )}
-            </div>
             <div className="days-overdue-filter" ref={daysOverdueRef}>
                 <button className={`filter-btn ${isDaysOverdueOpen ? 'open' : ''}`} onClick={handleDaysOverdueFilter}>
                     Days Overdue

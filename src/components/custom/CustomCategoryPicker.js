@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Example categories
-const categories = ['Fiction', 'Non-Fiction', 'Science', 'History', 'Biography'];
+const categories = ['Children', 'Fantasy', 'Biography', 'History', 'Mystery', 'Romance'];
 
 function CustomCategoryPicker({ selectedCategory, onChange }) {
   return (

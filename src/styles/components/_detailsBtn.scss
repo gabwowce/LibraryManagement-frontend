@@ -30,7 +30,16 @@
 
 
     &:hover{
-        background-color: $primary-color-hover;
+        width: 93px;
+        padding: 4px 0px;
+        border-radius: 4px;
+        color: $white;
+        font-weight: bold;
+        text-align: center;
+        border: 0;
+        color: $primary-color; 
+        background-color: $white;
+        border: 2px solid $primary-color;
         cursor: pointer;
     }
 }
@@ -49,7 +58,15 @@
 
 
     &:hover{
-        background-color: $primary-color-hover;
+        width: 93px;
+        padding: 6px 0px;
+        border-radius: 4px;
+        color: $white;
+        font-weight: bold;
+        text-align: center;
+        border: 0;
+        color: $white; 
+        background-color: $primary-color;
         cursor: pointer;
     }
 }

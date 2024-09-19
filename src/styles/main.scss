@@ -6,7 +6,7 @@
 @import './layout/MainLayout';
 @import './layout/sidebar';
 @import './layout/dashborad';
-@import './layout/Popups';
+@import './layout/popups';
 @import './layout/member-page';
 
 @import './themes/mixins';
@@ -23,6 +23,12 @@
 @import './components/detailsBtn';
 @import './components/bookFilter';
 
+@import './components/custom/customCategoryPicker';
+@import './components/custom/customYearPicker';
+
+@import './components/popops/bookDetailsPopup';
+@import './components/popops/memberDetailsPopup';
+@import './components/popops/overdueBookDetailsPopup';
 
 body{
     margin: 0;
