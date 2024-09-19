@@ -17,14 +17,16 @@ export const TableColumnsProvider = ({children})=>{
         { header: 'Title', key: 'title' },
         { header: 'Author', key: 'author' },
         { header: 'Borrower Name', key: 'borrowerName' },
-        { header: 'Loan Start Date', key: 'loanStartDate' },
-        { header: 'Loan End Date', key: 'loanEndDate' },
+        { header: 'Start Date', key: 'loanStartDate' },
+        { header: 'End Date', key: 'loanEndDate' },
         { header: 'Days Overdue', key: 'daysOverdue' },
+        { header: 'Actions', key: 'action' },
       ];  
 
-    const centeredOverdueBooksTableColumns = ['id', 'loanStartDate', 'loanEndDate', 'daysOverdue'];
+    const centeredOverdueBooksTableColumns = ['id', 'loanStartDate', 'loanEndDate', 'daysOverdue', 'action'];
 
     const booksTableColumns = [
+      { header: 'ID', key: 'id' },
       { header: 'Image', key: 'imagePath' },
       { header: 'Title', key: 'name' },
       { header: 'Author', key: 'author' },
@@ -32,16 +34,37 @@ export const TableColumnsProvider = ({children})=>{
       { header: 'Category', key: 'category' },
       { header: 'Amount', key: 'amount' },
       { header: 'Remaining Free', key: 'remainingFree' },
+      { header: 'Actions', key: 'action' },
     ];  
 
-  const centeredBooksTableColumns = ['imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category'];
+  const centeredBooksTableColumns = ['id', 'imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category', 'action'];
 
+
+  const membersTableColumns = [
+    { header: 'ID', key: 'id' },
+    { header: 'Name', key: 'name' },
+    { header: 'Surname', key: 'surname' },
+    { header: 'Date Of Birth', key: 'dateOfBirth' },
+    { header: 'Phone Number', key: 'phoneNumber' },
+    { header: 'Books Loaned', key: 'loans' },
+    { header: 'Actions', key: 'action' },
+  ];  
+
+const centeredMembersTableColumns = ['dateOfBirth', 'loans', 'phoneNumber', 'name', 'surname', 'action', 'id'];
 
 
     
 
     return(
-        <TableColumnsContext.Provider value={{incomingBooksTableColumns, overdueBooksTableColumns, centeredOverdueBooksTableColumns, booksTableColumns, centeredBooksTableColumns}}>
+        <TableColumnsContext.Provider value={{
+                                              incomingBooksTableColumns, 
+                                              overdueBooksTableColumns, 
+                                              centeredOverdueBooksTableColumns, 
+                                              booksTableColumns, 
+                                              centeredBooksTableColumns,
+                                              membersTableColumns,
+                                              centeredMembersTableColumns
+                                              }}>
              {children}
         </TableColumnsContext.Provider>
     );

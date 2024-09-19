@@ -1,26 +1,27 @@
 @import '../themes/variables';
 
 .search{
-    margin-right: auto;
+    margin-left: auto;
     display: flex;
     flex: 0;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
     padding: 8px 30px 8px 15px;
     border-radius: 20px;
-    background: $background-color;
+    background: $white;
     border: 1px solid $border-gray;
 
 
     input{
+        padding: 0 15px;
         flex: 1;
-        width: 300px;
+        width: 200px;
         border: none;
         font-size: $font-base;
         font-weight: $font-weight-normal;
         outline: none;
         color: $text-gray-color;
-        background: $background-color;
+        background:  $white;
         
     }
 }

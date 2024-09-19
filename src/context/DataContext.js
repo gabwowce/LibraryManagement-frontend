@@ -10,6 +10,7 @@ export const DataProvider = ({children})=>{
     const [incomingBooksData, setIncomingBooksData] = useState([]);
     const [overdueBooksData, setOverdueBooksData] = useState([]);
     const [booksData, setBooksData] = useState([]);
+    const [membersData, setmembersData] = useState([]);
 
     const fetchMiniStats = async () =>{
         try {
@@ -83,16 +84,37 @@ export const DataProvider = ({children})=>{
         }
     }
 
+    const fetchMembersData = async () => {
+        try {
+            const response = await fetch(`${config.baseURL}/api/members`);
+            if (!response.ok) {
+                setmembersData([]);
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setmembersData(data);
+        } catch (error) {
+            console.error("Error fetching MembersData: ", error);
+            setmembersData([]); 
+        }
+    }
+
     useEffect(() => {
         fetchMiniStats();
         fetchLoanData();
         fetchIncomingBooksData();
         fetchOverdueBooksData();
         fetchBooksData();
+        fetchMembersData();
     }, []);
 
     useEffect(() => {
-        if (statsInfo.length > 0 || loanData.length > 0 || incomingBooksData.length > 0 || overdueBooksData.length > 0 || booksData.length > 0)  {
+        if (statsInfo.length > 0 
+            || loanData.length > 0 
+            || incomingBooksData.length > 0 
+            || overdueBooksData.length > 0 
+            || booksData.length > 0
+            || membersData.length > 0)  {
             setAllData(true);
         }else {
             setAllData(false);
@@ -100,7 +122,15 @@ export const DataProvider = ({children})=>{
     }, [statsInfo]);
 
     return(
-        <DataContext.Provider value={{statsInfo, allData, loanData, incomingBooksData, overdueBooksData, booksData}}>
+        <DataContext.Provider value={{
+                                        statsInfo, 
+                                        allData, 
+                                        loanData, 
+                                        incomingBooksData, 
+                                        overdueBooksData, 
+                                        booksData,
+                                        membersData
+                                        }}>
              {children}
         </DataContext.Provider>
     );

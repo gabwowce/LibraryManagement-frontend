@@ -18,7 +18,7 @@ function SearchBar(){
                 onClick={()=>{}}
             />
             <input 
-                placeholder="Search" 
+                placeholder="Find a Member" 
                 value={searchText}
                 onChange={handleSearchChange}
             />

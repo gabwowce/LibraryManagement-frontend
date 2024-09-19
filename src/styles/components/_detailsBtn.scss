@@ -1,0 +1,75 @@
+@import '../themes/variables';
+@import '../themes/mixins';
+
+.btn-deatails-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.btn-details-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-lend-book {
+    display: inline-block;
+    width: 93px;
+    padding: 6px 0px;
+    border-radius: 4px;
+    color: $white;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    color: $white; 
+    background-color: $primary-color;
+
+
+    &:hover{
+        background-color: $primary-color-hover;
+        cursor: pointer;
+    }
+}
+.btn-return-book{
+    display: inline-block;
+    width: 93px;
+    padding: 4px 0px;
+    border-radius: 4px;
+    color: $white;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    color: $primary-color; 
+    background-color: $white;
+    border: 2px solid $primary-color;
+
+
+    &:hover{
+        background-color: $primary-color-hover;
+        cursor: pointer;
+    }
+}
+
+.btn-edit{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    .btn-icon img {
+        width: 18px; 
+        height: 18px;
+    }
+    .btn-icon-only:hover img {
+        opacity: 0.8; 
+      }
+  
+}

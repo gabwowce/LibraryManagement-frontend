@@ -16,10 +16,12 @@ function DataTable({ tableColumns, tableData, centeredColumns, renderCell }) {
 
     const goToPreviousPage = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
+        window.scrollTo(0, 0);
     };
 
     const goToNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+        window.scrollTo(0, 0);
     };
 
     useEffect(() => {

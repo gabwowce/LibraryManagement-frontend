@@ -6,6 +6,8 @@
 @import './layout/MainLayout';
 @import './layout/sidebar';
 @import './layout/dashborad';
+@import './layout/Popups';
+@import './layout/member-page';
 
 @import './themes/mixins';
 @import './themes/variables';
@@ -18,6 +20,9 @@
 @import './components/incomingBooksDataTable';
 @import './components/overdueBooksFilter';
 @import './components/customDataPicker';
+@import './components/detailsBtn';
+@import './components/bookFilter';
+
 
 body{
     margin: 0;

@@ -3,13 +3,32 @@ import DataTable from '../components/DataTable';
 import { useTableColumnsContext } from '../context/TableColumnsContext';
 import { useDataContext } from '../context/DataContext';
 import OverdueBooksFilter from '../components/OverdueBooksFilter';
+import detailsIcon from '../assets/details.png';
+import {useDataByIdContext} from '../context/DataByIdContext';
+import BtnPopupDetails from '../components/btn/BtnPopupDetails';
+import OverdueBookDetailsPopup from '../components/popups/OverdueBookDetailsPopup';
 
 function OverdueBooksPage() {
   const { overdueBooksTableColumns, centeredOverdueBooksTableColumns } = useTableColumnsContext();
   const { overdueBooksData } = useDataContext();
+  const { fetchOverdueBookDataById, overdueBookData } = useDataByIdContext();
   
   const [filteredData, setFilteredData] = useState(null);
   const [filters, setFilters] = useState({ startDate: null, order: '' });
+
+  const [openDetailsPopup, setOpenDetailsPopup] = useState(null); 
+  const [selectedLoanId, setSelectedLoanId] = useState(null);
+
+  const handleButtonClick = async (loanID) => {
+    setSelectedLoanId(loanID); 
+    setOpenDetailsPopup(true);     
+    await fetchOverdueBookDataById(loanID);
+  };
+
+  const closePopup = () => {
+    setOpenDetailsPopup(false);
+    setSelectedLoanId(null); 
+  };
 
   const applyFilters = (startDate, order) => {
     setFilters({ startDate, order });
@@ -47,6 +66,14 @@ function OverdueBooksPage() {
                 {rowData[key]}
             </span>
         );
+    }else if (key === 'action') {
+      return (
+              <BtnPopupDetails 
+                btnClassName="btn-edit" 
+                icon={detailsIcon}
+                onButtonClick={() => handleButtonClick(rowData.id)}
+            />
+      );
     }
     return rowData[key];
 };
@@ -60,6 +87,12 @@ function OverdueBooksPage() {
                 tableData={filteredData || overdueBooksData}  
                 centeredColumns={centeredOverdueBooksTableColumns}
                 renderCell={renderCell}/>
+
+      <OverdueBookDetailsPopup 
+            isOpen={openDetailsPopup}
+            onClose={closePopup}
+            overudeBookData={overdueBookData}
+            />
     </div>
   );
 }

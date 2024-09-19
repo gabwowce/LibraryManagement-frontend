@@ -1,0 +1,18 @@
+@import '../themes/variables';
+@import '../themes/mixins';
+
+
+.member-page-container{
+
+
+
+    .member-page-header {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+       padding: 15px 0;
+       
+      }
+}

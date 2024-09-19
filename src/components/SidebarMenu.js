@@ -4,7 +4,6 @@ import { ReactComponent as DashboardIcon } from '../assets/dashborad.svg';
 import { ReactComponent as OverdueBooksIcon  } from '../assets/overdueBooks.svg';
 import { ReactComponent as MembersIcon } from '../assets/members.svg';
 import { ReactComponent as BooksIcon } from '../assets/books.svg';
-import { ReactComponent as LoansIcon } from '../assets/loans.svg';
 import { Link,useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,11 +43,6 @@ function SidebarMenu(){
               <li className={`menu-item ${activeItem === '/members' ? 'menu-item-active' : ''}`}>
                 <Link to="/members" onClick={() => setActiveItem('/members')}>
                   <MembersIcon className='icon' /><h6>Members</h6>
-                </Link>
-              </li>
-              <li className={`menu-item ${activeItem === '/loans' ? 'menu-item-active' : ''}`}>
-                <Link to="/loans" onClick={() => setActiveItem('/loans')}>
-                  <LoansIcon className='icon'/><h6>Loans</h6>
                 </Link>
               </li>
             </ul>

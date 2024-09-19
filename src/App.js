@@ -4,19 +4,25 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import {DataProvider} from './context/DataContext';
 import {ScreenWidthProvider} from './context/ScreenWidthContext'
 import { TableColumnsProvider } from './context/TableColumnsContext';
+import { DataByIdProvider } from './context/DataByIdContext';
 
 
 function App() {
   return (
-    <DataProvider>
-      <ScreenWidthProvider>
-        <TableColumnsProvider>
-          <Router>
-            <MainLayout />
-          </Router>
-        </TableColumnsProvider>
-      </ScreenWidthProvider>
-    </DataProvider>
+    <ScreenWidthProvider>
+      <DataProvider>
+            <DataByIdProvider>
+            
+                <TableColumnsProvider>
+                  <Router>
+                    <MainLayout />
+                  </Router>
+                </TableColumnsProvider>
+            
+            </DataByIdProvider>
+      </DataProvider>
+    </ScreenWidthProvider>
+    
    
   );
 }
