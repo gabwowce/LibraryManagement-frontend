@@ -2,6 +2,8 @@
 
 ![Screenshot 2024-09-19 194054](https://github.com/user-attachments/assets/bbe660a1-ad50-450c-910f-8e81c41292fc)
 
+![image](https://github.com/user-attachments/assets/b1269ae4-27ac-4444-bd46-422a599f4900)
+
 
 ![Screenshot 2024-09-19 194142](https://github.com/user-attachments/assets/218ec269-7bdb-4dc5-ae45-a3e442d58490)
 
