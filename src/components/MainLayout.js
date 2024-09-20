@@ -13,11 +13,6 @@ const MainLayout = () => {
   const {allData} = useDataContext();
   const {screenWidth} = useScreenWidthContext();
 
-  useEffect(()=>{
-    console.log(`---> allData: ${allData}`);
-    console.log(`---> screenWidth: ${screenWidth}`);
-  },[allData,screenWidth])
-
 
   return (
 

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { useUpdateDataContext } from '../../context/UpdateDataContext';
 
-function BookDetailsPopup({ isOpen, onClose, bookData}) {
+function AddBookPopup({ isOpen, onClose, bookData}) {
+
+
+
+  
   if (!isOpen) return null; 
-
   return (
     <div className="popup-overlay">
       <div className="popup-content">
@@ -17,4 +21,4 @@ function BookDetailsPopup({ isOpen, onClose, bookData}) {
   );
 }
 
-export default BookDetailsPopup;
+export default AddBookPopup;

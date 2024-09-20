@@ -17,14 +17,14 @@ function MembersPage() {
   const [selectedMemberId, setSelectedMemberId] = useState(null);
 
   const handleButtonClick = async (memberId) => {
-    setSelectedMemberId(memberId); // Store the member ID
-    setOpenDetailsPopup(true);     // Open the popup
+    setSelectedMemberId(memberId); 
+    setOpenDetailsPopup(true);    
     await fetchMemberDataById(memberId);
   };
 
   const closePopup = () => {
     setOpenDetailsPopup(false);
-    setSelectedMemberId(null); // Clear the selected member ID on close
+    setSelectedMemberId(null); 
   };
 
   const renderCell = (key, rowData) => {

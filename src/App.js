@@ -5,22 +5,29 @@ import {DataProvider} from './context/DataContext';
 import {ScreenWidthProvider} from './context/ScreenWidthContext'
 import { TableColumnsProvider } from './context/TableColumnsContext';
 import { DataByIdProvider } from './context/DataByIdContext';
+import { UpdateDataProvider } from './context/UpdateDataContext';
 
 
 function App() {
   return (
     <ScreenWidthProvider>
-      <DataProvider>
-            <DataByIdProvider>
-            
-                <TableColumnsProvider>
-                  <Router>
-                    <MainLayout />
-                  </Router>
-                </TableColumnsProvider>
-            
-            </DataByIdProvider>
-      </DataProvider>
+      <DataByIdProvider>
+        <UpdateDataProvider>
+          <DataProvider>
+                
+                
+                    <TableColumnsProvider>
+                      <Router>
+                        <MainLayout />
+                      </Router>
+                    </TableColumnsProvider>
+                
+              
+          </DataProvider>
+        </UpdateDataProvider>
+      </DataByIdProvider>
+      
+      
     </ScreenWidthProvider>
     
    

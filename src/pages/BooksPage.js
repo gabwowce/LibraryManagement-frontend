@@ -4,7 +4,7 @@ import { useDataContext } from '../context/DataContext';
 import { useDataByIdContext } from '../context/DataByIdContext';
 import DataTable from '../components/DataTable';
 import BtnPopupDetails from '../components/btn/BtnPopupDetails';
-import BookDetailsPopup from '../components/popups/BookDetailsPopup';
+import AddBookPopup from '../components/popups/AddBookPopup';
 import detailsIcon from '../assets/details.png';
 import BooksFilter from '../components/BooksFilter';
 
@@ -81,7 +81,7 @@ function BooksPage() {
         renderCell={renderCell}
       />
 
-      <BookDetailsPopup 
+      <AddBookPopup 
         isOpen={openDetailsPopup}
         onClose={closePopup}
         memberData={bookData}

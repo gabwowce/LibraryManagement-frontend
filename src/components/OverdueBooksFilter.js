@@ -85,6 +85,8 @@ function OverdueBooksFilter({ onApplyFilters }) {
             <div className="filter-hint">
                 <h4>Filter By</h4>
             </div>
+
+
             <div className="days-overdue-filter" ref={daysOverdueRef}>
                 <button className={`filter-btn ${isDaysOverdueOpen ? 'open' : ''}`} onClick={handleDaysOverdueFilter}>
                     Days Overdue
@@ -100,6 +102,8 @@ function OverdueBooksFilter({ onApplyFilters }) {
                     </div>
                 )}
             </div>
+
+            
             <div className="reset-filter-btn">
                 <button className="reset-btn" onClick={handleResetFilters}>
                     <img src="/reset.png" alt="reset icon" /> Reset Filters

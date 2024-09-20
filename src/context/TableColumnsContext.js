@@ -34,10 +34,9 @@ export const TableColumnsProvider = ({children})=>{
       { header: 'Category', key: 'category' },
       { header: 'Amount', key: 'amount' },
       { header: 'Remaining Free', key: 'remainingFree' },
-      { header: 'Actions', key: 'action' },
     ];  
 
-  const centeredBooksTableColumns = ['id', 'imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category', 'action'];
+  const centeredBooksTableColumns = ['id', 'imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category'];
 
 
   const membersTableColumns = [
