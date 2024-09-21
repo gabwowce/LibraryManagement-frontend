@@ -11,10 +11,12 @@
     border-radius: 10px;
     margin: 15px 0;
     padding: 0; 
+    overflow: hidden;
 
     .filter-img {
         border-right: 1px solid $border-gray;
         padding: 20px 18px;
+
     }
 
     .filter-hint {

@@ -54,15 +54,15 @@ function MyLineChart() {
           {selectedYear}
         </div>
         {isOpen && (
-          <div className="custom-dropdown-options">
+          <div className="custom-dropdown-options-chart">
             <div 
-              className="custom-dropdown-option" 
+              className="custom-dropdown-option-chart" 
               onClick={() => handleYearChange(2023)}
             >
               2023
             </div>
             <div 
-              className="custom-dropdown-option" 
+              className="custom-dropdown-option-chart" 
               onClick={() => handleYearChange(2024)}
             >
               2024

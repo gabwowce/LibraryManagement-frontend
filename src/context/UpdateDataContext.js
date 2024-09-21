@@ -61,32 +61,25 @@ export const UpdateDataProvider = ({ children }) => {
 
 
     const updateMemberData = async (memberID, updatedData) => {
-    
-        const bodyData = new FormData();
-        bodyData.append("name", updatedData.name || "");
-        bodyData.append("surname", updatedData.surname || "");
-        bodyData.append("dateOfBirth", updatedData.dateOfBirth || "");
-        bodyData.append("phoneNumber", updatedData.phoneNumber || "");
-    
-        // Siųskite, tik jei bodyData nėra tuščias
-        if (Object.keys(bodyData).length > 0) {
+
+        if (Object.keys(updatedData).length > 0) {
             try {
                 const response = await fetch(`${config.baseURL}/api/members/member/${memberID}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(bodyData),
+                    body: JSON.stringify(updatedData),
                 });
     
                 if (!response.ok) {
                     throw new Error('Failed to update member data');
                 }
     
-                const message = `Member ID: ${memberID} information updated successfully!`;
+                const message = `Information for member with ID: ${memberID} updated successfully!`;
 
                 setConfirmationMessage(message);
-                setTimeout(() => setConfirmationMessage(''), 10000);
+                setTimeout(() => setConfirmationMessage(''), 100000);
             } catch (error) {
                 console.error("Error updating member data:", error);
             }

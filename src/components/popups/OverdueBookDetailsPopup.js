@@ -93,7 +93,10 @@ function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
                 <div className="confirmation-message">{confirmationMessage}</div>
             ) : (
                 <>
-                    <h4 className='popup-title'>Overdue Book Details</h4>
+                    <div className='popup-title-container'>
+                      <h4 className='popup-title'>Overdue Book Details</h4>
+                    </div>
+                    
                     <form className="form-container">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
@@ -159,7 +162,7 @@ function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
                                     {editData.status || 'Select Status'}
                                 </button>
                                 {isDropdownOpen && (
-                                    <div className="custom-dropdown-options status" ref={dropdownRef}>
+                                    <div className="custom-dropdown-options book-status" ref={dropdownRef}>
                                         <div className="custom-dropdown-option" onClick={() => handleStatusClick('Active')}>
                                             Active
                                         </div>

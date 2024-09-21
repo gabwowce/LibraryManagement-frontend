@@ -3,7 +3,7 @@ import { useTableColumnsContext } from '../context/TableColumnsContext';
 import { useDataContext } from '../context/DataContext';
 import { useDataByIdContext } from '../context/DataByIdContext';
 import DataTable from '../components/DataTable';
-import BtnPopupDetails from '../components/btn/BtnPopupDetails';
+import AddMemberBtn from '../components/btn/AddMemberBtn';
 import AddBookPopup from '../components/popups/AddBookPopup';
 import detailsIcon from '../assets/details.png';
 import BooksFilter from '../components/BooksFilter';
@@ -39,14 +39,14 @@ function BooksPage() {
       return (
         <img className="book-image" src={rowData[key]} alt="Book" style={{ width: '50px', height: 'auto' }} />
       );
-    } else if (key === 'action') {
-      return (
-        <BtnPopupDetails 
-          btnClassName="btn-edit" 
-          icon={detailsIcon}
-          onButtonClick={() => handleButtonClick(rowData.id)}
-        />
-      );
+    // } else if (key === 'action') {
+    //   return (
+    //     <BtnPopupDetails 
+    //       btnClassName="btn-edit" 
+    //       icon={detailsIcon}
+    //       onButtonClick={() => handleButtonClick(rowData.id)}
+    //     />
+    //   );
     }
     return rowData[key];
   };
@@ -73,7 +73,10 @@ function BooksPage() {
   return (
     <div>
       <h1>Books</h1>
-      <BooksFilter onApplyFilters={handleApplyFilters} />
+      <div className='actions-container'>
+        <BooksFilter onApplyFilters={handleApplyFilters} />
+        <AddMemberBtn onButtonClick={handleButtonClick}/>
+      </div>
       <DataTable 
         tableColumns={booksTableColumns} 
         tableData={filteredData}  
@@ -84,7 +87,6 @@ function BooksPage() {
       <AddBookPopup 
         isOpen={openDetailsPopup}
         onClose={closePopup}
-        memberData={bookData}
       />
     </div>
   );

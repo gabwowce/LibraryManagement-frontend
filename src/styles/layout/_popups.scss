@@ -44,12 +44,46 @@
               color: #000;
             }
           }
-
-        .popup-title{
-          font-family: $primary-font;
-          align-self: flex-start;
-        }  
       }
+
+      .confirmation-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        position: relative;
+        margin-top: 50px;
+
+        .confirmation-icon{
+          width: 120px;
+          height: 120px;
+          position: absolute;
+          top: -130px;
+        }
+
+        .text-success{
+          font-size: $font-large;
+          font-weight: $font-weight-extraBold;
+          color: $green;
+        }
+
+        .confirmation-message{
+          width: 250px;
+          font-family: $primary-font;
+          color: $text-gray-color;
+
+
+        }
+
+        .confirmation-ok-btn{
+          @include green-success-btn(250px, 8px)
+        }
+      }
+
+
+
+      
   }
 
 
@@ -62,6 +96,7 @@
     align-items: center;
     width: 100%;
     gap: 15px;
+    margin-top: 20px;
     
     .form-group {
       display: flex;
@@ -69,6 +104,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
+      
       
       label {
         font-size: 0.9rem;
@@ -147,19 +183,21 @@
     top: 100%;
     left: 0;
     right: 0;
-    width: 100%;
+    width: 250px;
     background-color: $white;
-    border-radius: 4px;
     z-index: 1;
     color: black;
     font-weight: $font-weight-normal;
     font-size: 14px;
+    box-sizing: border-box;
   
   
     .custom-dropdown-option {
         padding: 8px;
         text-align: center;
         cursor: pointer;
+        color: black;
+        font-weight: $font-weight-normal;
   
         &:hover {
             background-color: #4880FF;
@@ -167,7 +205,7 @@
         }
     }
   }
-  .status{
+  .book-status{
     border: 1px solid #D5D5D5;
   }
   
@@ -189,61 +227,38 @@
         font-size: 0.9rem;
         transition: background-color 0.3s;
         
+        
+        
     
         &.cancel-btn {
-          display: inline-block;
-          width: 100px;
-          padding: 10px 14px;
-          border-radius: 4px;
-          color: $white;
-          font-weight: bold;
-          text-align: center;
-          border: 0;
-          color: $primary-color; 
-          background-color: $white;
-          border: 2px solid $primary-color;
-          box-sizing: border-box;
-    
-          &:hover {
-              padding: 12px 16px;
-              border-radius: 4px;
-              color: $white;
-              font-weight: bold;
-              text-align: center;
-              border: 0;
-              color: $white; 
-              background-color: $primary-color;
-          }
+          @include white-blue-bordered-btn(100px, 10px 14px);
         }
     
         &.save-btn {
-          display: inline-block;
-          width: 135px;
-          padding: 8px 12px;
-          border-radius: 4px;
-          color: $white;
-          font-weight: bold;
-          text-align: center;
-          border: 0;
-          color: $white; 
-          background-color: $primary-color;
-          box-sizing: border-box;
-    
-          &:hover {
-              display: inline-block;
-              padding: 6px 10px;
-              border-radius: 4px;
-              color: $white;
-              font-weight: bold;
-              text-align: center;
-              border: 0;
-              color: $primary-color; 
-              background-color: $white;
-              border: 2px solid $primary-color;
-          }
+          @include blue-btn(135px, 8px 12px);
+         
         }
       }
     }
   
+
+
+    .popup-title-container{
+      background-color: $primary-color;
+      width: 250px;
+      border-radius: 22px;
+      padding: 15px 20px;
+      position: absolute;
+      top: -20px;
+
+      box-sizing: border-box;
+
+      .popup-title{
+        font-family: $primary-font;
+        color: $white;
+        align-self: center;
+        font-weight: $font-weight-extraBold;
+      }  
+    }
     
   

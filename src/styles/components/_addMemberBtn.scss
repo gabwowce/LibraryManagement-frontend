@@ -1,0 +1,30 @@
+@import '../themes/variables';
+@import '../themes/mixins';
+
+
+.add-member-icon{
+    img{
+        width: 25px;
+        height: 25px;
+    }
+    
+}
+
+.add-member-btn{
+    font-family: $primary-font;
+    border: 0;
+    cursor: pointer;
+    padding: 26px 18px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    background-color: $very-light-gray;
+
+    &:hover {
+        background-color: $hover-light-gray;
+    }
+
+    h4{
+        font-size: 14px;
+    }
+}

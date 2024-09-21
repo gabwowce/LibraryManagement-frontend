@@ -1,0 +1,10 @@
+@import '../themes/variables';
+@import '../themes/mixins';
+
+.actions-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
