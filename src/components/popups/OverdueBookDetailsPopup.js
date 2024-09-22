@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useUpdateDataContext } from '../../context/UpdateDataContext';
+import confirmationIcon from '../../assets/success.svg';
 
 function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
     const { updateOverdueBookData, confirmationMessage } = useUpdateDataContext();
@@ -71,7 +72,6 @@ function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
               
           } else {
               console.log('No changes to update.');
-              confirmationMessage = 'No changes to update.';
           }
       } 
   };
@@ -86,14 +86,24 @@ function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
   if (!isOpen) return null;
   return (
     <div className="popup-overlay">
-        <div className="popup-content">
-            <span className="close-btn" onClick={handleClose}>x</span>
-
-            {confirmationMessage ? (
-                <div className="confirmation-message">{confirmationMessage}</div>
-            ) : (
-                <>
-                    <div className='popup-title-container'>
+      <div className="popup-content">
+        {confirmationMessage ? (
+          <div className="confirmation-container">
+            <img
+              className="confirmation-icon"
+              src={confirmationIcon}
+              alt="confirmation icon"
+            />
+            <div className="text-success">Success</div>
+            <div className="confirmation-message">{confirmationMessage}</div>
+            <button className="confirmation-ok-btn" onClick={handleClose}>OK</button>
+          </div>
+        ) : (
+          <>
+            <span className="close-btn" onClick={handleClose}>
+              x
+            </span>
+            <div className='popup-title-container'>
                       <h4 className='popup-title'>Overdue Book Details</h4>
                     </div>
                     

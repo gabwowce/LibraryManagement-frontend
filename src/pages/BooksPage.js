@@ -3,10 +3,12 @@ import { useTableColumnsContext } from '../context/TableColumnsContext';
 import { useDataContext } from '../context/DataContext';
 import { useDataByIdContext } from '../context/DataByIdContext';
 import DataTable from '../components/DataTable';
-import AddMemberBtn from '../components/btn/AddMemberBtn';
+import AddMemberBtn from '../components/btn/AddBtn';
 import AddBookPopup from '../components/popups/AddBookPopup';
 import detailsIcon from '../assets/details.png';
 import BooksFilter from '../components/BooksFilter';
+import AddBtn from '../components/btn/AddBtn';
+import AddbookIcon from '../assets/addBook.png';
 
 function BooksPage() {
   const { booksTableColumns, centeredBooksTableColumns } = useTableColumnsContext();
@@ -75,7 +77,7 @@ function BooksPage() {
       <h1>Books</h1>
       <div className='actions-container'>
         <BooksFilter onApplyFilters={handleApplyFilters} />
-        <AddMemberBtn onButtonClick={handleButtonClick}/>
+        <AddBtn onButtonClick={handleButtonClick} content="Add Book" icon={AddbookIcon}/>
       </div>
       <DataTable 
         tableColumns={booksTableColumns} 

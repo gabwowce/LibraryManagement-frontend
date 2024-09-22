@@ -1,19 +1,19 @@
 import React from "react";
 import AddIcon from '../../assets/add.png';
 
-function AddMemberBtn({onButtonClick}) {
+function AddBtn({onButtonClick, content, icon}) {
   return (
-    <div className="overdue-filter-container">
+    <div className="overdue-filter-container" style={{ margin: 0 }}>
         <div className="filter-img add-member-icon">
-            <img src={AddIcon} alt="add icon" />
+            <img src={icon} alt="icon" />
         </div>
 
         <button className="add-member-btn" onClick={onButtonClick}>
-            <h4>Add Member</h4>
+            <h4>{content}</h4>
         </button>
 
     </div>
   );
 }
 
-export default AddMemberBtn;
+export default AddBtn;

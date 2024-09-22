@@ -7,6 +7,9 @@ import BtnPopupDetails from '../components/btn/BtnPopupDetails';
 import {useDataByIdContext} from '../context/DataByIdContext';
 import detailsIcon from '../assets/details.png';
 import SearchBar from '../components/SearchBar';
+import AddMemberPopup from '../components/popups/AddMemberPopup';
+import AddBtn from '../components/btn/AddBtn';
+import AddMemberIcon from '../assets/add.png';
 
 function MembersPage() {
   const { membersTableColumns, centeredMembersTableColumns} = useTableColumnsContext();
@@ -64,9 +67,13 @@ function MembersPage() {
 
   return (
       <div className='member-page-container'>
+       
         <div className='member-page-header'>
-          <h1>Members</h1>
+          <h1 className='members-title'>Members</h1>
           <SearchBar/>
+          <AddBtn onButtonClick={handleButtonClick} 
+                  content="Add Member"
+                  icon={AddMemberIcon}/>
         </div>
         
         <DataTable 
@@ -79,6 +86,11 @@ function MembersPage() {
             isOpen={openDetailsPopup}
             onClose={closePopup}
             memberData={memberData}/>
+
+        {/* <AddMemberPopup 
+            isOpen={openDetailsPopup}
+            onClose={closePopup}
+          /> */}
       </div>
     
   );

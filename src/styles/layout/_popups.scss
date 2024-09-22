@@ -97,6 +97,26 @@
     width: 100%;
     gap: 15px;
     margin-top: 20px;
+
+    .form-grouped-group{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .form-group {
+        flex: 1; 
+        margin-right: 10px; 
+      }
+      .form-group:last-child {
+        margin-right: 0; 
+      }
+      input {
+        width: 100%; 
+        max-width: 120px; 
+      }
+
+    }
     
     .form-group {
       display: flex;
@@ -135,6 +155,8 @@
   
   .status-filter{
     position: relative;
+
+
   }
   .filter-btn {
     all: unset;
@@ -163,6 +185,7 @@
         top: 82%; 
         transform: translateY(-50%); 
     }
+    
     &:hover {
         background-color: $hover-light-gray;
     }
@@ -176,6 +199,21 @@
     }
   
   }
+
+  .category-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-right: 30px; // Extra space for the icon
+
+    &::after {
+        content: '🢓'; 
+        margin-left: 5px; // Space between text and icon
+        color: $text-gray-color;
+        font-size: 30px; 
+    }
+}
   
   .custom-dropdown-options {
     position: absolute;
