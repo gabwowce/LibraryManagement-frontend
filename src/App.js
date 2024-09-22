@@ -12,23 +12,26 @@ import { AddDataProvider } from './context/AddDataContext';
 function App() {
   return (
     <ScreenWidthProvider>
-      <DataByIdProvider>
-        <UpdateDataProvider>
-          <DataProvider>
-            <AddDataProvider>
-                
-              <TableColumnsProvider>
-                <Router>
-                  <MainLayout />
-                </Router>
-              </TableColumnsProvider>
-                  
+      <AddDataProvider>
+        <DataByIdProvider>
+          <UpdateDataProvider>
+            <DataProvider>
               
-            </AddDataProvider>
-          </DataProvider>
-        </UpdateDataProvider>
-      </DataByIdProvider>
+                  
+                <TableColumnsProvider>
+                  <Router>
+                    <MainLayout />
+                  </Router>
+                </TableColumnsProvider>
+                    
+                
+              
+            </DataProvider>
+          </UpdateDataProvider>
+        </DataByIdProvider>
       
+      </AddDataProvider>
+     
       
     </ScreenWidthProvider>
     

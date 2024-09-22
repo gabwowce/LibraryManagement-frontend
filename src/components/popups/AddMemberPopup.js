@@ -10,6 +10,7 @@ function AddMemberPopup({ isOpen, onClose }) {
     dateOfBirth: '',
     phoneNumber: '',
   });
+  const [isUpdated, setIsUpdated] = useState(false); // Step 1: Define isUpdated state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,16 +24,21 @@ function AddMemberPopup({ isOpen, onClose }) {
       return;
     }
 
-    await addNewMemberData(formData); 
-    setFormData({ name: '', surname: '', dateOfBirth: '', phoneNumber: '' }); 
-    onClose();
+    await addNewMemberData(formData);
+    setIsUpdated(true); // Step 2: Set isUpdated to true
+
+    setTimeout(() => {
+      onClose();
+      // Optionally reload the page here if needed.
+    }, 10000); 
   };
 
   const handleClose = () => {
     onClose();
-    window.location.reload(); 
+    if (isUpdated) {
+      window.location.reload(); // Step 3: Refresh only if isUpdated is true
+    }
   };
-
 
   if (!isOpen) return null;
 

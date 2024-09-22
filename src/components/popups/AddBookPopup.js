@@ -5,18 +5,20 @@ import confirmationIcon from '../../assets/success.svg';
 const categories = ['Children', 'Fantasy', 'Biography', 'History', 'Mystery', 'Romance'];
 
 function AddBookPopup({ isOpen, onClose }) {
-  const defaultImagePath = '/Images/Book20.jpg'; 
+  const defaultImagePath = 'Images/Book20.jpg'; 
   const { addNewBookData, confirmationMessage } = useAddDataContext();
 
   const [formData, setFormData] = useState({
     name: '',
     author: '',
     yearOfRelease: '',
-    category: '',
+    categoryId: undefined,
+    categoryName: '',
     amount: '',
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false); // Step 1: Define isUpdated state
   const dropdownRef = useRef(null);
 
   const handleChange = (e) => {
@@ -30,8 +32,12 @@ function AddBookPopup({ isOpen, onClose }) {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const handleCategoryClick = (category) => {
-    setFormData((prev) => ({ ...prev, category }));
+  const handleCategoryClick = (category, index) => {
+    setFormData((prev) => ({ 
+      ...prev, 
+      categoryId: index + 1, 
+      categoryName: category  
+    }));
     setIsDropdownOpen(false);
   };
 
@@ -50,61 +56,72 @@ function AddBookPopup({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      // Reset formData when the popup opens
       setFormData({
         name: '',
         author: '',
         yearOfRelease: '',
-        category: '',
+        categoryId: undefined,
+        categoryName: '',
         amount: '',
       });
+      setIsUpdated(false); // Reset isUpdated when popup opens
     }
   }, [isOpen]);
 
   const handleSave = async () => {
-    const { name, author, yearOfRelease, category, amount } = formData;
-    if (!name || !author || !yearOfRelease || !category || !amount) {
+    const { name, author, yearOfRelease, categoryId, amount } = formData; 
+    if (!name || !author || !yearOfRelease || categoryId === undefined || !amount) {
       alert('Please fill in all fields.');
       return;
     }
 
     const bookData = {
-      ...formData,
+      name,
+      author,
+      yearOfRelease,
+      categoryId, 
+      amount,
       imagePath: defaultImagePath,
     };
 
     await addNewBookData(bookData);
-    onClose();
+    setIsUpdated(true); // Step 2: Set isUpdated to true
+
+    setTimeout(() => {
+      onClose();
+      // Optionally reload the page here if needed.
+    }, 10000); 
   };
 
   const handleClose = () => {
     onClose();
-    window.location.reload(); 
+    if (isUpdated) {
+      window.location.reload(); // Step 3: Refresh only if isUpdated is true
+    }
   };
-
 
   if (!isOpen) return null;
 
   return (
     <div className="popup-overlay">
-    <div className="popup-content">
-      {confirmationMessage ? (
-        <div className="confirmation-container">
-          <img
-            className="confirmation-icon"
-            src={confirmationIcon}
-            alt="confirmation icon"
-          />
-          <div className="text-success">Success</div>
-          <div className="confirmation-message">{confirmationMessage}</div>
-          <button className="confirmation-ok-btn" onClick={handleClose}>OK</button>
-        </div>
-      ) : (
-        <>
-          <span className="close-btn" onClick={handleClose}>
-            x
-          </span>
-          <div className='popup-title-container'>
+      <div className="popup-content">
+        {confirmationMessage ? (
+          <div className="confirmation-container">
+            <img
+              className="confirmation-icon"
+              src={confirmationIcon}
+              alt="confirmation icon"
+            />
+            <div className="text-success">Success</div>
+            <div className="confirmation-message">{confirmationMessage}</div>
+            <button className="confirmation-ok-btn" onClick={handleClose}>OK</button>
+          </div>
+        ) : (
+          <>
+            <span className="close-btn" onClick={handleClose}>
+              x
+            </span>
+            <div className='popup-title-container'>
               <h4 className="popup-title">Add New Book</h4>
             </div>
             <form className="form-container">
@@ -123,16 +140,15 @@ function AddBookPopup({ isOpen, onClose }) {
                     className={`filter-btn category-picker ${isDropdownOpen ? 'open' : ''}`}
                     onClick={handleDropdownToggle}
                   >
-                    {formData.category || 'Select'}
-                   
+                    {formData.categoryName || 'Select'}
                   </button>
                   {isDropdownOpen && (
                     <div className="custom-dropdown-options book-category">
-                      {categories.map((category) => (
+                      {categories.map((category, index) => (
                         <div
-                          key={category}
+                          key={index} // Changed from category.id to index
                           className="custom-dropdown-option"
-                          onClick={() => handleCategoryClick(category)}
+                          onClick={() => handleCategoryClick(category, index)}
                         >
                           {category}
                         </div>

@@ -94,7 +94,8 @@ export const UpdateDataProvider = ({ children }) => {
         <UpdateDataContext.Provider value={{
             updateOverdueBookData,
             updateMemberData,
-            confirmationMessage
+            confirmationMessage,
+            setConfirmationMessage 
         }}>
             {children}
         </UpdateDataContext.Provider>

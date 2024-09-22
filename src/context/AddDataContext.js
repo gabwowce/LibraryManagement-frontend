@@ -5,10 +5,11 @@ export const AddDataContext = createContext();
 
 export const AddDataProvider = ({ children }) => {
   const [confirmationMessage, setConfirmationMessage] = useState('');
-
+  const [ErrorMessage, setErrorMessage] = useState('');
+  
   const addNewMemberData = async (memberData) => {
     try {
-      const response = await fetch(`${config.baseURL}/api/member`, {
+      const response = await fetch(`${config.baseURL}/api/members/member`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,18 +21,54 @@ export const AddDataProvider = ({ children }) => {
         throw new Error('Failed to add member');
       }
 
-      const data = await response.json();
       setConfirmationMessage('Member added successfully!'); 
+      setTimeout(() => {
+        setConfirmationMessage(''); 
+      }, 10000); 
+
+      const data = await response.json();
+     
     } catch (error) {
       console.error(error);
-      setConfirmationMessage('Error adding member.');
+      setErrorMessage('Error adding member.');
+    }
+  };
+
+
+  const addNewBookData = async (bookData) => {
+    try {
+      const response = await fetch(`${config.baseURL}/api/books/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add book');
+      }
+
+      setConfirmationMessage('Book added successfully!'); 
+      setTimeout(() => {
+        setConfirmationMessage(''); 
+      }, 10000); 
+
+      const data = await response.json();
+      
+    } catch (error) {
+      console.error(error);
+      setErrorMessage('Error adding book.');
     }
   };
 
   return (
     <AddDataContext.Provider value={{
+      addNewBookData,
       addNewMemberData,
       confirmationMessage,
+      setConfirmationMessage, 
+      ErrorMessage
     }}>
       {children}
     </AddDataContext.Provider>

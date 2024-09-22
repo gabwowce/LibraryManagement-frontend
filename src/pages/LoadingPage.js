@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import config from '../config';
+
 
 function LoadingPage() {
   return (
-    <div>
+    <div className="loading">
       <h1>Loading...</h1>
+      <div className="background"></div>
     </div>
   );
 }
