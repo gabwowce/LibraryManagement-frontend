@@ -29,8 +29,8 @@ function AddMemberPopup({ isOpen, onClose }) {
 
     setTimeout(() => {
       onClose();
-      // Optionally reload the page here if needed.
-    }, 10000); 
+      window.location.reload();
+    }, 10000);
   };
 
   const handleClose = () => {

@@ -11,14 +11,14 @@
   margin-top: 70px; 
   margin-left: 240px; 
   height: 100vh;
-  padding: 2rem 5rem;
+  padding: 2rem 8rem;
   flex: 1;
 }
 
 
 @include respond-to("small"){
   .content {
-    padding: 2rem 3rem;
+    padding: 2rem 4rem;
   }
                 
 }

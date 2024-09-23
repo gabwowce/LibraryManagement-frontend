@@ -1,16 +1,19 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import config from '../config';
+import exclamationIcon from '../assets/exclamation.svg';
 
-function LoadingPage() {
+function ToSmallScreenPage() {
   return (
-    <div>
-        <h1>
-            Your screen is too small to view this content properly. 
-            Please resize your browser window for the best experience.
-        </h1>
+    <div className="popup-overlay too-samall-screen">
+      <div className="popup-content">
+        <div className="confirmation-container">
+          <img className="question-icon" src={exclamationIcon} alt="confirmation icon" />
+          <div className="text-confirm">
+            Your screen is too small to view this content properly. Please resize your browser window for the best experience.
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default LoadingPage;
+export default ToSmallScreenPage;

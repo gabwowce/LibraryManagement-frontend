@@ -18,7 +18,7 @@ const MainLayout = () => {
 
     allData ? 
     (
-      screenWidth>1130 ?  
+      screenWidth>1257 ?  
       
       (
         <div className="layout">

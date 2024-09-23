@@ -18,7 +18,7 @@ function AddBookPopup({ isOpen, onClose }) {
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isUpdated, setIsUpdated] = useState(false); // Step 1: Define isUpdated state
+  const [isUpdated, setIsUpdated] = useState(false); 
   const dropdownRef = useRef(null);
 
   const handleChange = (e) => {
@@ -85,18 +85,18 @@ function AddBookPopup({ isOpen, onClose }) {
     };
 
     await addNewBookData(bookData);
-    setIsUpdated(true); // Step 2: Set isUpdated to true
+    setIsUpdated(true); 
 
     setTimeout(() => {
       onClose();
-      // Optionally reload the page here if needed.
-    }, 10000); 
+      window.location.reload();
+    }, 10000);
   };
 
   const handleClose = () => {
     onClose();
     if (isUpdated) {
-      window.location.reload(); // Step 3: Refresh only if isUpdated is true
+      window.location.reload(); 
     }
   };
 

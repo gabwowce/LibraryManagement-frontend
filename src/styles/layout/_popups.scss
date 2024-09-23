@@ -46,40 +46,6 @@
           }
       }
 
-      .confirmation-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 15px;
-        position: relative;
-        margin-top: 50px;
-
-        .confirmation-icon{
-          width: 120px;
-          height: 120px;
-          position: absolute;
-          top: -130px;
-        }
-
-        .text-success{
-          font-size: $font-large;
-          font-weight: $font-weight-extraBold;
-          color: $green;
-        }
-
-        .confirmation-message{
-          width: 250px;
-          font-family: $primary-font;
-          color: $text-gray-color;
-
-
-        }
-
-        .confirmation-ok-btn{
-          @include green-success-btn(250px, 8px)
-        }
-      }
 
 
 
@@ -228,6 +194,7 @@
     font-weight: $font-weight-normal;
     font-size: 14px;
     box-sizing: border-box;
+    border: 1px solid $border-gray;
   
   
     .custom-dropdown-option {

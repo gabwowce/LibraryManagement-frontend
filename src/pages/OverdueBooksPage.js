@@ -3,7 +3,7 @@ import DataTable from '../components/DataTable';
 import { useTableColumnsContext } from '../context/TableColumnsContext';
 import { useDataContext } from '../context/DataContext';
 import OverdueBooksFilter from '../components/OverdueBooksFilter';
-import detailsIcon from '../assets/details.png';
+import detailsIcon from '../assets/edit.svg';
 import {useDataByIdContext} from '../context/DataByIdContext';
 import BtnPopupDetails from '../components/btn/BtnPopupDetails';
 import OverdueBookDetailsPopup from '../components/popups/OverdueBookDetailsPopup';

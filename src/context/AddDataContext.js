@@ -62,10 +62,38 @@ export const AddDataProvider = ({ children }) => {
     }
   };
 
+  const addNewLoanData = async (loanData) => {
+    try {
+      const response = await fetch(`${config.baseURL}/api/loans`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loanData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add loan');
+      }
+
+      setConfirmationMessage('Loan added successfully!'); 
+      setTimeout(() => {
+        setConfirmationMessage(''); 
+      }, 10000); 
+
+      const data = await response.json();
+      
+    } catch (error) {
+      console.error(error);
+      setErrorMessage('Error adding loan.');
+    }
+  };
+
   return (
     <AddDataContext.Provider value={{
       addNewBookData,
       addNewMemberData,
+      addNewLoanData,
       confirmationMessage,
       setConfirmationMessage, 
       ErrorMessage

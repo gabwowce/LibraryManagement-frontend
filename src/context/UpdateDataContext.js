@@ -24,7 +24,7 @@ export const UpdateDataProvider = ({ children }) => {
             bodyData.status = "";
         }
     
-        // Siųskite, tik jei bodyData nėra tuščias
+
         if (Object.keys(bodyData).length > 0) {
             try {
                 const response = await fetch(`${config.baseURL}/api/books/overdue/${loanID}`, {
@@ -88,12 +88,68 @@ export const UpdateDataProvider = ({ children }) => {
         }
     };
     
+
+    const returnBook = async (loanId, status) => {
+        const queryParams = new URLSearchParams({ newStatus: status }).toString();
+    
+        try {
+            const response = await fetch(`${config.baseURL}/api/loans/${loanId}?${queryParams}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to update loan status');
+            }
+    
+            const message = `Loan ID: ${loanId} updated successfully! Status: ${status}`;
+            setConfirmationMessage(message);
+            setTimeout(() => setConfirmationMessage(''), 10000);
+        } catch (error) {
+            console.error("Error updating loan status:", error);
+        }
+    };
+
+
+    const updateBookData = async (bookID, updatedData) => {
+
+        if (Object.keys(updatedData).length > 0) {
+            try {
+                const response = await fetch(`${config.baseURL}/api/books/book/${bookID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to update book data');
+                }
+    
+                const message = `Information of book with ID: ${bookID} updated successfully!`;
+
+                setConfirmationMessage(message);
+                setTimeout(() => setConfirmationMessage(''), 100000);
+            } catch (error) {
+                console.error("Error updating book data:", error);
+            }
+        } else {
+            console.log('No data to send.');
+        }
+    };
+    
+    
     
 
     return (
         <UpdateDataContext.Provider value={{
             updateOverdueBookData,
             updateMemberData,
+            returnBook,
+            updateBookData,
             confirmationMessage,
             setConfirmationMessage 
         }}>

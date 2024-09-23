@@ -21,4 +21,12 @@
             left: 0;
         }
       }
+
+      .edit-delete-container-member-page{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
 }

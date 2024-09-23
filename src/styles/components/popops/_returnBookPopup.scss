@@ -1,0 +1,26 @@
+@import '../../themes/variables';
+@import '../../themes/mixins';
+
+.book-picker{
+    &::after {
+        content: '🢓'; 
+        margin-left: 10px;
+        color: $text-gray-color;
+        font-size: 30px; 
+      
+        position: absolute;
+        right: 50px; 
+        top: 82%; 
+        transform: translateY(-50%); 
+    }
+}
+
+.has-selected{
+    &::after {
+        opacity: 0;
+    }
+}
+
+.book-dropdown-options{
+    border: 1px solid $border-gray;
+}

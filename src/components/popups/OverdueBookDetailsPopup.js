@@ -103,7 +103,7 @@ function OverdueBookDetailsPopup({ isOpen, onClose, overdueBookData }) {
             <span className="close-btn" onClick={handleClose}>
               x
             </span>
-            <div className='popup-title-container'>
+            <div className='popup-title-container overdue'>
                       <h4 className='popup-title'>Overdue Book Details</h4>
                     </div>
                     
