@@ -1,8 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 
 export const TableColumnsContext = createContext();
 
 export const TableColumnsProvider = ({children})=>{
+  const {user} = useAuthContext();
+
     const incomingBooksTableColumns = [
         { header: 'Title', key: 'title' },
         { header: 'Author', key: 'author' },
@@ -20,8 +23,11 @@ export const TableColumnsProvider = ({children})=>{
         { header: 'Start Date', key: 'loanStartDate' },
         { header: 'End Date', key: 'loanEndDate' },
         { header: 'Days Overdue', key: 'daysOverdue' },
-        { header: 'Actions', key: 'action' },
       ];  
+
+      if (user && user.role === 'admin') {
+        overdueBooksTableColumns.push({ header: 'Actions', key: 'action' });
+    }
 
     const centeredOverdueBooksTableColumns = ['id', 'loanStartDate', 'loanEndDate', 'daysOverdue', 'action'];
 
@@ -34,8 +40,12 @@ export const TableColumnsProvider = ({children})=>{
       { header: 'Category', key: 'category' },
       { header: 'Amount', key: 'amount' },
       { header: 'Remaining Free', key: 'remainingFree' },
-      { header: 'Actions', key: 'action' },
+  
     ];  
+    if (user && user.role === 'admin') {
+      booksTableColumns.push({ header: 'Actions', key: 'action' });
+  }
+    
 
   const centeredBooksTableColumns = ['id', 'imagePath', 'amount', 'remainingFree', 'yearOfRelease', 'category', 'action'];
 
@@ -52,6 +62,22 @@ export const TableColumnsProvider = ({children})=>{
 
 const centeredMembersTableColumns = ['dateOfBirth', 'loans', 'phoneNumber', 'name', 'surname', 'action', 'id'];
 
+const managersTableColumns = [
+  { header: 'ID', key: 'id' },
+  { header: 'Name', key: 'name' },
+  { header: 'Surname', key: 'surname' },
+  { header: 'Date Of Birth', key: 'dateOfBirth' },
+  { header: 'Phone Number', key: 'phoneNumber' },
+  { header: 'Books Loaned', key: 'loans' },
+  { header: 'Role', key: 'role' },
+  
+];  
+if (user && user.role === 'admin') {
+  managersTableColumns.push({ header: 'Actions', key: 'action' });
+}
+
+const centeredManagersTableColumns = ['dateOfBirth', 'loans', 'phoneNumber', 'name', 'surname', 'action', 'id', 'role'];
+
 
     
 
@@ -63,7 +89,9 @@ const centeredMembersTableColumns = ['dateOfBirth', 'loans', 'phoneNumber', 'nam
                                               booksTableColumns, 
                                               centeredBooksTableColumns,
                                               membersTableColumns,
-                                              centeredMembersTableColumns
+                                              centeredMembersTableColumns,
+                                              managersTableColumns,
+                                              centeredManagersTableColumns
                                               }}>
              {children}
         </TableColumnsContext.Provider>

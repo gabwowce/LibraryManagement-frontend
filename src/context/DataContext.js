@@ -3,19 +3,32 @@ import config from '../config';
 
 export const DataContext = createContext();
 
-export const DataProvider = ({children})=>{
+export const DataProvider = ({children}) => {
     const [allData, setAllData] = useState(false);
     const [statsInfo, setStatsInfo] = useState([]);
-    const [loanData, setloanData] = useState([]);
+    const [loanData, setLoanData] = useState([]);
     const [incomingBooksData, setIncomingBooksData] = useState([]);
     const [overdueBooksData, setOverdueBooksData] = useState([]);
     const [booksData, setBooksData] = useState([]);
-    const [membersData, setmembersData] = useState([]);
+    const [membersData, setMembersData] = useState([]);
+    const [adminsAndManagersData, setAdminsAndManagersData] = useState([]);
 
-    const fetchMiniStats = async () =>{
+
+    const fetchWithToken = async (url) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(url, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response;
+    };
+
+    const fetchMiniStats = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/stats`);
-            if (!response.ok){
+            const response = await fetchWithToken(`${config.baseURL}/api/stats`);
+            if (!response.ok) {
                 setAllData(false);
             }
             const data = await response.json();
@@ -26,25 +39,25 @@ export const DataProvider = ({children})=>{
         }
     }
 
-    const fetchLoanData = async () =>{
+    const fetchLoanData = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/loansData`);
-            if (!response.ok){
+            const response = await fetchWithToken(`${config.baseURL}/api/loansData`);
+            if (!response.ok) {
                 setAllData(false);
             }
             const data = await response.json();
-            setloanData(data);
+            setLoanData(data);
         } catch (error) {
             console.error("Error fetching loan data: ", error);
-            setloanData([]);
+            setLoanData([]);
         }
     }
 
-    const fetchIncomingBooksData= async () =>{
+    const fetchIncomingBooksData = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/incomingBooks`);
-            if (!response.ok){
-                setIncomingBooksData(false);
+            const response = await fetchWithToken(`${config.baseURL}/api/incomingBooks`);
+            if (!response.ok) {
+                setAllData(false);
             }
             const data = await response.json();
             setIncomingBooksData(data);
@@ -56,9 +69,9 @@ export const DataProvider = ({children})=>{
 
     const fetchOverdueBooksData = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/books/overdue`);
+            const response = await fetchWithToken(`${config.baseURL}/api/books/overdue`);
             if (!response.ok) {
-                setOverdueBooksData([]);
+                setAllData([]);
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
@@ -71,9 +84,9 @@ export const DataProvider = ({children})=>{
 
     const fetchBooksData = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/books`);
+            const response = await fetchWithToken(`${config.baseURL}/api/books`);
             if (!response.ok) {
-                setBooksData([]);
+                setAllData([]);
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
@@ -84,18 +97,36 @@ export const DataProvider = ({children})=>{
         }
     }
 
+    
+
     const fetchMembersData = async () => {
         try {
-            const response = await fetch(`${config.baseURL}/api/members`);
+            const response = await fetchWithToken(`${config.baseURL}/api/members`);
             if (!response.ok) {
-                setmembersData([]);
+                setAllData([]);
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            setmembersData(data);
+            setMembersData(data);
         } catch (error) {
             console.error("Error fetching MembersData: ", error);
-            setmembersData([]); 
+            setMembersData([]); 
+        }
+    }
+
+    const fetchAdminsAndManagersData = async () => {
+        try {
+            const response = await fetchWithToken(`${config.baseURL}/api/members/admins&managers`);
+            if (!response.ok) {
+                setAllData([]);
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setAdminsAndManagersData(data);
+            console.log("---->AdminsAndManagersData" + JSON.stringify(data));
+        } catch (error) {
+            console.error("Error fetching AdminsAndManagersData: ", error);
+            setAdminsAndManagersData([]); 
         }
     }
 
@@ -106,6 +137,7 @@ export const DataProvider = ({children})=>{
         fetchOverdueBooksData();
         fetchBooksData();
         fetchMembersData();
+        fetchAdminsAndManagersData();
     }, []);
 
     useEffect(() => {
@@ -114,24 +146,26 @@ export const DataProvider = ({children})=>{
             || incomingBooksData.length > 0 
             || overdueBooksData.length > 0 
             || booksData.length > 0
-            || membersData.length > 0)  {
+            || membersData.length > 0
+            || adminsAndManagersData.length > 0)  {
             setAllData(true);
-        }else {
+        } else {
             setAllData(false);
         }
     }, [statsInfo]);
 
-    return(
+    return (
         <DataContext.Provider value={{
-                                        statsInfo, 
-                                        allData, 
-                                        loanData, 
-                                        incomingBooksData, 
-                                        overdueBooksData, 
-                                        booksData,
-                                        membersData
-                                        }}>
-             {children}
+            statsInfo, 
+            allData, 
+            loanData, 
+            incomingBooksData, 
+            overdueBooksData, 
+            booksData,
+            membersData,
+            adminsAndManagersData
+        }}>
+            {children}
         </DataContext.Provider>
     );
 };

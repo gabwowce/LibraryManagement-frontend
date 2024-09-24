@@ -7,33 +7,39 @@ import { TableColumnsProvider } from './context/TableColumnsContext';
 import { DataByIdProvider } from './context/DataByIdContext';
 import { UpdateDataProvider } from './context/UpdateDataContext';
 import { AddDataProvider } from './context/AddDataContext';
-
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <ScreenWidthProvider>
-      <AddDataProvider>
-        <DataByIdProvider>
-          <UpdateDataProvider>
-            <DataProvider>
+
+    <Router>
+      <AuthProvider>
+
+        <ScreenWidthProvider>
+              <AddDataProvider>
+                <DataByIdProvider>
+                  <UpdateDataProvider>
+                    <DataProvider>
+                      
+                          
+                        <TableColumnsProvider>
+                        
+                            <MainLayout />
+                        
+                        </TableColumnsProvider>
+                            
+                        
+                      
+                    </DataProvider>
+                  </UpdateDataProvider>
+                </DataByIdProvider>
               
-                  
-                <TableColumnsProvider>
-                  <Router>
-                    <MainLayout />
-                  </Router>
-                </TableColumnsProvider>
-                    
-                
+              </AddDataProvider>
+            
               
-            </DataProvider>
-          </UpdateDataProvider>
-        </DataByIdProvider>
-      
-      </AddDataProvider>
-     
-      
-    </ScreenWidthProvider>
+            </ScreenWidthProvider>
+        </AuthProvider>
+    </Router>
     
    
   );

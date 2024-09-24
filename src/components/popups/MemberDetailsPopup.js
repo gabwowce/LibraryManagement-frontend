@@ -3,7 +3,7 @@ import { useUpdateDataContext } from '../../context/UpdateDataContext';
 import confirmationIcon from '../../assets/success.svg';
 
 
-function MemberDetailsPopup({ isOpen, onClose, memberData}) {
+function MemberDetailsPopup({ isOpen, onClose, memberData, popupTitle}) {
   const { updateMemberData, confirmationMessage } = useUpdateDataContext();
   const [editData, setEditData] = useState(memberData);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,6 +11,13 @@ function MemberDetailsPopup({ isOpen, onClose, memberData}) {
 
   const statusRef = useRef(null);
   const dropdownRef = useRef(null);
+
+  const formattedDate = editData.dateOfBirth 
+  ? new Date(editData.dateOfBirth).toLocaleDateString('en-CA') 
+  : '';
+
+
+
 
   useEffect(() => {
     setEditData(memberData);
@@ -79,7 +86,7 @@ function MemberDetailsPopup({ isOpen, onClose, memberData}) {
               x
             </span>
             <div className='popup-title-container'>
-              <h4 className="popup-title">Member Details</h4>
+              <h4 className="popup-title">{popupTitle}</h4>
             </div>
            
             <form className="form-container">
@@ -106,10 +113,10 @@ function MemberDetailsPopup({ isOpen, onClose, memberData}) {
               <div className="form-group">
                 <label htmlFor="dateOfBirth">Date Of Birth</label>
                 <input
-                  type="text"
+                  type="date"
                   id="dateOfBirth"
                   name="dateOfBirth"
-                  value={editData.dateOfBirth || ""}
+                  value={editData.dateOfBirth}
                   onChange={handleChange}
                 />
               </div>

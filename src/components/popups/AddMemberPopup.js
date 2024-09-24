@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useAddDataContext } from '../../context/AddDataContext';
 import confirmationIcon from '../../assets/success.svg';
 
-function AddMemberPopup({ isOpen, onClose }) {
-  const { addNewMemberData, confirmationMessage } = useAddDataContext();
+function AddMemberPopup({ isOpen, onClose, popupTitle }) {
+  const { addNewMemberData, addNewManagerData, confirmationMessage } = useAddDataContext();
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     dateOfBirth: '',
     phoneNumber: '',
   });
-  const [isUpdated, setIsUpdated] = useState(false); // Step 1: Define isUpdated state
+  const [isUpdated, setIsUpdated] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,8 +24,12 @@ function AddMemberPopup({ isOpen, onClose }) {
       return;
     }
 
-    await addNewMemberData(formData);
-    setIsUpdated(true); // Step 2: Set isUpdated to true
+    if (popupTitle === "Add New Manager") {
+      await addNewManagerData(formData);
+    } else {
+      await addNewMemberData(formData);
+    }
+    setIsUpdated(true); 
 
     setTimeout(() => {
       onClose();
@@ -36,7 +40,7 @@ function AddMemberPopup({ isOpen, onClose }) {
   const handleClose = () => {
     onClose();
     if (isUpdated) {
-      window.location.reload(); // Step 3: Refresh only if isUpdated is true
+      window.location.reload(); 
     }
   };
 
@@ -62,24 +66,24 @@ function AddMemberPopup({ isOpen, onClose }) {
               x
             </span>
             <div className='popup-title-container'>
-              <h4 className="popup-title">Add New Member</h4>
+              <h4 className="popup-title">{popupTitle}</h4>
             </div>
             <form className="form-container">
               <div className="form-group">
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+                <input type="text" id="name" name="name" value={formData.name} placeholder='Enter name' onChange={handleChange} />
               </div>
               <div className="form-group">
                 <label htmlFor="surname">Surname</label>
-                <input type="text" id="surname" name="surname" value={formData.surname} onChange={handleChange} />
+                <input type="text" id="surname" name="surname" value={formData.surname} placeholder='Enter surname' onChange={handleChange} />
               </div>
               <div className="form-group">
                 <label htmlFor="dateOfBirth">Date Of Birth</label>
-                <input type="text" id="dateOfBirth" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} />
+                <input type="text" id="dateOfBirth" name="dateOfBirth" value={formData.dateOfBirth} placeholder='YYYY-MM-DD' onChange={handleChange} />
               </div>
               <div className="form-group">
                 <label htmlFor="phoneNumber">Phone Number</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} />
+                <input type="text" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} placeholder='Enter phone number' onChange={handleChange} />
               </div>
               <div className="form-actions">
                 <button type="button" className="cancel-btn" onClick={onClose}>Cancel</button>

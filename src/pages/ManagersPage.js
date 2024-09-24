@@ -19,66 +19,56 @@ import { useAuthContext } from '../context/AuthContext';
 import editIcon from '../assets/edit.svg';
 import deleteIcon from '../assets/delete.svg';
 
-function MembersPage() {
-  const { membersTableColumns, centeredMembersTableColumns} = useTableColumnsContext();
+function ManagersPage() {
+  const { managersTableColumns, centeredManagersTableColumns} = useTableColumnsContext();
   const { fetchMemberDataById, fetchBookDataById, memberData, deleteMember, confirmationMessage, errorMessage  } = useDataByIdContext();
-  const { membersData } = useDataContext();
+  const { adminsAndManagersData } = useDataContext();
   const { returnBook } = useUpdateDataContext();
 
   const [openPopup, setOpenPopup] = useState(null);
   const [selectedMemberId, setSelectedMemberId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredMembersData, setFilteredMembersData] = useState(membersData);
+  const [filteredManagersData, setFilteredManagersData] = useState(adminsAndManagersData);
   const [loansData, setLoansData] = useState([]);
 
   const {user} = useAuthContext();
 
   useEffect(() => {
     const handleSearch = () => {
-      if (searchQuery.length >= 3) {
-        const filteredData = membersData.filter(member =>
-          member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          member.surname.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredMembersData(filteredData);
-      } else {
-        setFilteredMembersData(membersData);
-      }
+        if (searchQuery.length >= 3) {
+            const filteredData = adminsAndManagersData.filter(manager =>
+                manager.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                manager.surname.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredManagersData(filteredData); 
+        } else {
+            setFilteredManagersData(adminsAndManagersData); 
+        }
     };
-
+    
     handleSearch();
-  }, [searchQuery, membersData]);
+  }, [searchQuery, adminsAndManagersData]);
 
-  const handleConfirmDelete= async()=>{
+  const handleConfirmDelete = async () => {
     await deleteMember(selectedMemberId);
     setSelectedMemberId(null);
-  }
+}
+
   
 
-  const handleAddMemberClick = () => {
-    setOpenPopup('addMember');
+  const handleAddManagerClick = () => {
+    setOpenPopup('addManager');
   };
 
-  const handleLendClick = (memberId) => {
-    fetchMemberDataById(memberId);
-    setOpenPopup('addLoan');
+  const handleDetailsClick = async (managerId) => {
+    setSelectedMemberId(managerId);
+    setOpenPopup('managerDetails');
+    await fetchMemberDataById(managerId);
   };
 
-  const handleReturnClick = async (memberId) => {
-    await fetchMemberDataById(memberId);
-    setOpenPopup('returnBook');
-};
-
-
-  const handleDetailsClick = async (memberId) => {
-    setSelectedMemberId(memberId);
-    setOpenPopup('memberDetails');
-    await fetchMemberDataById(memberId);
-  };
-
-  const handleDeleteClick = (memberId) => {
-    setSelectedMemberId(memberId); 
-    setOpenPopup('deleteMember'); 
+  const handleDeleteClick = (managerId) => {
+    setSelectedMemberId(managerId); 
+    setOpenPopup('deleteManager'); 
   };
 
   const closePopup = () => {
@@ -93,24 +83,8 @@ function MembersPage() {
       return <span className='loansAmount'>{activeLoans.length}</span>;
     } else if (key === 'action') {
       return (
-
         <div className='btn-deatails-container'>
-          <div className='btn-details-group'>
-            <BtnPopupDetails
-              btnClassName="btn-lend-book"
-              btnContent='Lend'
-              onButtonClick={() => handleLendClick(rowData.id)}
-            />
-            <BtnPopupDetails
-              btnClassName="btn-return-book"
-              btnContent='Return'
-              onButtonClick={() => handleReturnClick(rowData.id)}
-            />
-          </div>
-
-         {
-            user.role === 'admin' && (
-              <div className='edit-delete-container-member-page'>
+          <div className='edit-delete-container-member-page'>
             <BtnPopupDetails
               btnClassName="btn-edit"
               icon={editIcon}
@@ -122,8 +96,7 @@ function MembersPage() {
               onButtonClick={() => handleDeleteClick(rowData.id)}
             />
           </div>
-            )
-         } 
+
 
         </div>
       );
@@ -138,76 +111,58 @@ function MembersPage() {
 
   return (
     <div className='member-page-container'>
-      
       <div className='member-page-header'>
-        <h1 className='members-title'>Members</h1>
+        <h1 className='members-title'>Managers</h1>
         <SearchBar 
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery} 
-          placeholder="Search members..."
+          placeholder="Search..."
         />
         {user.role === 'admin' && (
-           <AddBtn onButtonClick={handleAddMemberClick}
-           content="Add Member"
-           icon={AddMemberIcon} 
-           additionalClass="add-member-smaller"/>
+           <AddBtn onButtonClick={handleAddManagerClick}
+           content="Add Manager"
+           icon={AddMemberIcon} />
         )}
         
       </div>
 
       <DataTable
-        tableColumns={membersTableColumns}
-        tableData={filteredMembersData} 
-        centeredColumns={centeredMembersTableColumns}
+        tableColumns={managersTableColumns}
+        tableData={filteredManagersData} 
+        centeredColumns={centeredManagersTableColumns}
         renderCell={renderCell}
       />
 
-      {openPopup === 'memberDetails' && (
+      {openPopup === 'managerDetails' && (
         <MemberDetailsPopup
           isOpen={true}
           onClose={closePopup}
           memberData={memberData}
-          popupTitle='Member Details'
+          popupTitle='Manager Details'
         />
       )}
 
-      {openPopup === 'addMember' && (
+      {openPopup === 'addManager' && (
         <AddMemberPopup
         isOpen={true}
         onClose={closePopup}
-        popupTitle="Add New Member"
+        popupTitle="Add New Manager"
       />
       )}
 
-      {openPopup === 'addLoan' && (
-        <AddNewLoanPopup
-          isOpen={true}
-          onClose={closePopup}
-          memberData={memberData}
-        />
-      )}
 
-      {openPopup === 'returnBook' && (
-        <ReturnBookPopup
-          isOpen={true}
-          onClose={closePopup}
-          memberData={memberData}
-          returnBook={returnBook}
-        />
-      )}
-
-      {openPopup === 'deleteMember' && (
+      {openPopup === 'deleteManager' && (
         <DeleteConfirmPopup
         isOpen={true}
         onClose={closePopup}
         onConfirm={handleConfirmDelete} 
         confirmationMessage={confirmationMessage}
         errorMessage={errorMessage}
-        question="Do you really want to delete this member?"
+        question="Do you really want to delete this manager?"
       />
       )}
     </div>
   );
 }
 
-export default MembersPage;
+export default ManagersPage;

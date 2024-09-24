@@ -14,7 +14,6 @@
     font-family: $primary-font;
     border: 0;
     cursor: pointer;
-    padding: 26px 18px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     overflow: hidden;
@@ -27,4 +26,8 @@
     h4{
         font-size: 14px;
     }
+}
+
+.add-member-smaller{
+    padding: 0px;
 }

@@ -8,16 +8,15 @@ $sidebar-text-color: white;
 .sidebar {
   width: $sidebar-width;
   background-color: $white;
-  position: fixed;
+  position: fixed; 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  top: 0;
+  top: 0; 
   left: 0;
-  height: 100vh;
+  height: 100vh; 
   border-right: 1px solid $border-gray;
-  position: relative;
 
   h2 {
     margin: 17px 0;
@@ -36,10 +35,12 @@ $sidebar-text-color: white;
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; // Užtikrina, kad pagrindiniai elementai užimtų visą vietą
+    flex-grow: 1;
+    width: 85%;
 
     li {
       position: relative;
+      
 
       a {
         color: $text-black-color;
@@ -115,8 +116,21 @@ $sidebar-text-color: white;
     position: absolute;
     bottom: 90px;
     margin-top: auto;
+    width: 85%;
 
     li{
+
+      .icon {
+        position: absolute;
+        left: 18px;
+        width: 22px;
+        height: 24px;
+        color: #202224;
+      }
+
+      &.menu-item-active .icon {
+        color: $white !important;
+      }
 
       &::before {
         content: "";
@@ -135,10 +149,12 @@ $sidebar-text-color: white;
         padding: 15px 64px 15px 42px;
       }
 
+
     }
 
   }
 }
+
 
 .seperator{
   border-top: 1px solid $border-gray;

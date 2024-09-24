@@ -12,7 +12,7 @@ header {
   align-items: center;
   height: $header-height;
   background-color: $primary-bg;
-  position: fixed;
+  position: absolute;
   width: calc(100vw - 401px);
   top: 0;
   left:240px;

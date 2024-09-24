@@ -3,7 +3,7 @@ import SearchIcon from '../assets/search.png'
 import {useState} from 'react';
 
 
-function SearchBar({ searchQuery, setSearchQuery }) {
+function SearchBar({ searchQuery, setSearchQuery, placeholder }) {
     const handleChange = (event) => {
       setSearchQuery(event.target.value);
     };
@@ -16,7 +16,7 @@ function SearchBar({ searchQuery, setSearchQuery }) {
                 onClick={()=>{}}
             />
             <input 
-                placeholder="Search members..." 
+                placeholder={placeholder}
                 type="text"
                 value={searchQuery}
                 onChange={handleChange}

@@ -12,15 +12,13 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
-        padding: 10px  0 15px 0;
+        padding: 0px  0 15px 0;
         position: relative;
        
-        .members-title{
-            position: absolute;
-            top: -10px;
-            left: 0;
-        }
+       
       }
+
+     
 
       .edit-delete-container-member-page{
         display: flex;

@@ -12,6 +12,7 @@ import AddBookPopup from '../components/popups/AddBookPopup';
 import AddbookIcon from '../assets/addBook.png';
 import editIcon from '../assets/edit.svg';
 import deleteIcon from '../assets/delete.svg';
+import { useAuthContext } from '../context/AuthContext';
 
 function BooksPage() {
   const { booksTableColumns, centeredBooksTableColumns } = useTableColumnsContext();
@@ -24,7 +25,7 @@ function BooksPage() {
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [filteredData, setFilteredData] = useState(booksData);
 
-
+  const {user} = useAuthContext();
 
   const { deleteBook, errorMessage, confirmationMessage} = useDataByIdContext();
 
@@ -107,7 +108,9 @@ function BooksPage() {
       <h1>Books</h1>
       <div className='actions-container'>
         <BooksFilter onApplyFilters={handleApplyFilters} />
-        <AddBtn onButtonClick={handleAddBookButtonClick} content="Add Book" icon={AddbookIcon} />
+        {user.role === 'admin' && (
+           <AddBtn onButtonClick={handleAddBookButtonClick} content="Add Book" icon={AddbookIcon} />
+        )}
       </div>
       <DataTable 
         tableColumns={booksTableColumns} 

@@ -5,13 +5,17 @@ export const AddDataContext = createContext();
 
 export const AddDataProvider = ({ children }) => {
   const [confirmationMessage, setConfirmationMessage] = useState('');
-  const [ErrorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  
   
   const addNewMemberData = async (memberData) => {
     try {
+      const token = localStorage.getItem('token');
+
       const response = await fetch(`${config.baseURL}/api/members/member`, {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(memberData),
@@ -34,12 +38,44 @@ export const AddDataProvider = ({ children }) => {
     }
   };
 
+  const addNewManagerData = async (managerData) => {
+    try {
+      const token = localStorage.getItem('token');
+
+      const response = await fetch(`${config.baseURL}/api/members/manager`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(managerData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add manager');
+      }
+
+      setConfirmationMessage('Manager added successfully!'); 
+      setTimeout(() => {
+        setConfirmationMessage(''); 
+      }, 10000); 
+
+      const data = await response.json();
+     
+    } catch (error) {
+      console.error(error);
+      setErrorMessage('Error adding manager.');
+    }
+  };
+
 
   const addNewBookData = async (bookData) => {
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch(`${config.baseURL}/api/books/book`, {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(bookData),
@@ -63,10 +99,13 @@ export const AddDataProvider = ({ children }) => {
   };
 
   const addNewLoanData = async (loanData) => {
+    console.log("--->newloanData: " + JSON.stringify(loanData));
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch(`${config.baseURL}/api/loans`, {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(loanData),
@@ -94,9 +133,10 @@ export const AddDataProvider = ({ children }) => {
       addNewBookData,
       addNewMemberData,
       addNewLoanData,
+      addNewManagerData,
       confirmationMessage,
       setConfirmationMessage, 
-      ErrorMessage
+      errorMessage
     }}>
       {children}
     </AddDataContext.Provider>

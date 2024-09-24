@@ -91,7 +91,7 @@
                   padding: 10px;
                   border: 1px solid #ccc;
                   border-radius: 4px;
-                  // font-size: 0.9rem;
+                  font-size: $font-base;
                   font-family: $primary-font;
                   color: $text-lighter-gray;
                   box-sizing: border-box;
@@ -110,3 +110,6 @@
         @include big-btn(80%, 4px, $primary-color);
 
     }
+
+
+

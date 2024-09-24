@@ -8,44 +8,37 @@ import LoadingPage from '../pages/LoadingPage';
 import ToSmallScreenPage from '../pages/ToSmallScreenPage';
 import { useDataContext } from '../context/DataContext';
 import {useScreenWidthContext} from '../context/ScreenWidthContext'
+import LoginPage from '../pages/LoginPage';
+import { useAuthContext } from '../context/AuthContext';
 
 const MainLayout = () => {
   const {allData} = useDataContext();
+  const {user} = useAuthContext();
   const {screenWidth} = useScreenWidthContext();
 
 
   return (
-
-    allData ? 
-    (
-      screenWidth>1257 ?  
-      
-      (
-        <div className="layout">
-        <SidebarMenu/>
-        <Header/>
-          <main className="content">
+    user ? (
+      allData ? (
+        screenWidth > 1257 ? (
+          <div className="layout">
+            <SidebarMenu />
+            <Header />
+            <main className="content">
               <AppRoutes />
-          </main>
-      </div>
-      ) 
-
-      : 
-
-      (
-        <ToSmallScreenPage/>
+            </main>
+          </div>
+        ) : (
+          <ToSmallScreenPage />
+        )
+      ) : (
+        <LoadingPage />
       )
-      
-    ) 
-    
-    : 
-    
-    (
-      <LoadingPage/>
+    ) : (
+      <LoginPage />
     )
-
-
   );
+  
 };
 
 export default MainLayout;

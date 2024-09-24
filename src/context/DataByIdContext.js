@@ -11,13 +11,20 @@ export const DataByIdProvider = ({children})=>{
 
     const [confirmationMessage, setConfirmationMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    
 
 
-    const fetchMemberDataById = async (memberID) =>{
+    const fetchMemberDataById = async (memberID) => {
         try {
-            const response = await fetch(`${config.baseURL}/api/members/${memberID}`);
-            if (!response.ok){
-                allDataById(false);
+            const token = localStorage.getItem('token'); 
+            const response = await fetch(`${config.baseURL}/api/members/${memberID}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                setallDataById(false);
             }
             const data = await response.json();
             setmemberData(data);
@@ -25,12 +32,18 @@ export const DataByIdProvider = ({children})=>{
             console.error("Error fetching MemberDataById: ", error);
             setmemberData([]);
         }
-    }
+    };
     
 
     const fetchBookDataById = async (bookID) => {
         try {
-            const response = await fetch(`${config.baseURL}/api/books/${bookID}`);
+            const token = localStorage.getItem('token'); 
+            const response = await fetch(`${config.baseURL}/api/books/${bookID}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
             if (!response.ok) {
                 throw new Error('Failed to fetch book data');
             }
@@ -45,12 +58,18 @@ export const DataByIdProvider = ({children})=>{
     };
     
 
-    const fetchOverdueBookDataById = async (loanID) =>{
+    const fetchOverdueBookDataById = async (loanID) => {
         try {
+            const token = localStorage.getItem('token'); 
             console.error("-------> fetching BookDataById. loanID: ", loanID);
-            const response = await fetch(`${config.baseURL}/api/books/overdue/${loanID}`);
-            if (!response.ok){
-                allDataById(false);
+            const response = await fetch(`${config.baseURL}/api/books/overdue/${loanID}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                setallDataById(false);
             }
             const data = await response.json();
             setOverdueBookData(data);
@@ -59,36 +78,42 @@ export const DataByIdProvider = ({children})=>{
             console.error("Error fetching overdueBookDataById: ", error);
             setOverdueBookData({});
         }
-    }
+    };
 
     const deleteMember = async (memberID) => {
         try {
-            // Patikriname, ar narys turi aktyvių paskolų
-            const response = await fetch(`${config.baseURL}/api/members/check-member-loans/${memberID}`);
+            const token = localStorage.getItem('token'); 
+            const response = await fetch(`${config.baseURL}/api/members/check-member-loans/${memberID}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
             if (!response.ok) {
                 throw new Error('Failed to fetch loans data');
             }
-            
+    
             const hasActiveLoans = await response.json();
             
-            if (hasActiveLoans) { // Patikrinkite, ar narys turi aktyvių paskolų
+            if (hasActiveLoans) {
                 setErrorMessage("Member has active loans and cannot be deleted.");
                 setTimeout(() => {
                     setErrorMessage(''); 
-                }, 10000); // 10 sekundžių taimeris
+                }, 10000);
                 return { success: false };
             } 
-            
-            // Jei narys neturi paskolų, bandome jį ištrinti
+    
             const deleteResponse = await fetch(`${config.baseURL}/api/members/${memberID}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
             });
     
             if (!deleteResponse.ok) {
                 throw new Error('Failed to delete member');
             }
     
-        
             setConfirmationMessage("Member deleted successfully.");
             setErrorMessage(''); 
             setTimeout(() => {
@@ -109,45 +134,52 @@ export const DataByIdProvider = ({children})=>{
 
     const deleteBook = async (bookID) => {
         try {
-            // Check if the book is currently loaned out
-            const response = await fetch(`${config.baseURL}/api/books/check-loans/${bookID}`);
+            const token = localStorage.getItem('token'); 
+            const response = await fetch(`${config.baseURL}/api/books/check-loans/${bookID}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
             if (!response.ok) {
                 throw new Error('Failed to fetch loans data');
             }
-
+    
             const hasActiveLoans = await response.json();
-
+    
             if (hasActiveLoans) {
                 setErrorMessage("Book cannot be deleted as it has active loans.");
                 setTimeout(() => {
                     setErrorMessage('');
-                }, 10000); // Clear after 10 seconds
+                }, 10000); 
                 return { success: false };
             }
-
-            // If the book is not loaned, attempt to delete it
+    
             const deleteResponse = await fetch(`${config.baseURL}/api/books/${bookID}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
             });
-
+    
             if (!deleteResponse.ok) {
                 throw new Error('Failed to delete book');
             }
-
+    
             setConfirmationMessage("Book deleted successfully.");
             setErrorMessage('');
             setTimeout(() => {
                 setConfirmationMessage('');
-            }, 10000); // Clear after 10 seconds
+            }, 10000); 
             return { success: true };
-
+    
         } catch (error) {
             console.error("Error deleting book: ", error);
             setErrorMessage("An error occurred while deleting the book.");
             setConfirmationMessage('');
             setTimeout(() => {
                 setErrorMessage('');
-            }, 10000); // Clear after 10 seconds
+            }, 10000); 
             return { success: false };
         }
     };

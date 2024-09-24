@@ -4,13 +4,15 @@
 .layout {
   background-color: $background-color;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex-direction: row; 
+  min-height: 100vh; 
+  height: auto;
+  
 }
 .content {
   margin-top: 70px; 
   margin-left: 240px; 
-  height: 100vh;
+  height: auto;
   padding: 2rem 8rem;
   flex: 1;
 }

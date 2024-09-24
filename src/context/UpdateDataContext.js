@@ -27,10 +27,12 @@ export const UpdateDataProvider = ({ children }) => {
 
         if (Object.keys(bodyData).length > 0) {
             try {
+                const token = localStorage.getItem('token'); 
                 const response = await fetch(`${config.baseURL}/api/books/overdue/${loanID}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(bodyData),
                 });
@@ -64,10 +66,12 @@ export const UpdateDataProvider = ({ children }) => {
 
         if (Object.keys(updatedData).length > 0) {
             try {
+                const token = localStorage.getItem('token'); 
                 const response = await fetch(`${config.baseURL}/api/members/member/${memberID}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(updatedData),
                 });
@@ -93,10 +97,12 @@ export const UpdateDataProvider = ({ children }) => {
         const queryParams = new URLSearchParams({ newStatus: status }).toString();
     
         try {
+            const token = localStorage.getItem('token'); 
             const response = await fetch(`${config.baseURL}/api/loans/${loanId}?${queryParams}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
             });
     
@@ -117,10 +123,12 @@ export const UpdateDataProvider = ({ children }) => {
 
         if (Object.keys(updatedData).length > 0) {
             try {
+                const token = localStorage.getItem('token'); 
                 const response = await fetch(`${config.baseURL}/api/books/book/${bookID}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(updatedData),
                 });
