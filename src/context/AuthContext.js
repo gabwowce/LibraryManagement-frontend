@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import config from '../config';
 
 export const AuthContext = createContext();
@@ -9,7 +9,8 @@ export const AuthProvider = ({ children }) => {
         return savedUser ? JSON.parse(savedUser) : null;
     });
 
-    const login = async (username, password, navigate) => {
+    
+    const login = async (username, password, navigate, rememberMe) => {
         try {
             const response = await fetch(`${config.baseURL}/api/auth/login`, {
                 method: 'POST',
@@ -18,17 +19,24 @@ export const AuthProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok) {
-                sessionStorage.setItem('token', data.token); 
-                sessionStorage.setItem('user', JSON.stringify(data.user));
+                if (rememberMe) {
+                    sessionStorage.setItem('token', data.token); 
+                    sessionStorage.setItem('user', JSON.stringify(data.user)); 
+                } else {
+                    localStorage.setItem('token', data.token); 
+                    localStorage.setItem('user', JSON.stringify(data.user)); 
+                }
                 setUser(data.user);
                 data.user.role === 'member' ? (navigate('/books')) : (navigate('/'));
-            } else {
-                console.error(data.message);
+            } if (!response.ok) {
+                throw new Error('Login failed');
             }
         } catch (error) {
             console.error("Login error: ", error);
+            throw error; 
         }
     };
+  
 
     const logout = async (navigate) => {
         try {

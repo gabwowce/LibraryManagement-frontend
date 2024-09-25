@@ -36,19 +36,16 @@
             justify-content: center;
             align-items: center;
             gap: 35px;
+            position: relative;
 
-            .login-title{
-                color: $text-black-color;
-
-                .main-title{
-                    font-size: $font-larger;
-                    font-weight: $font-weight-bold;
-                    margin-bottom: 10px;
-                    font-family: $primary-font;
-                }
-
-               
-
+            .main-title{
+              color: $text-black-color;
+                font-size: $font-larger;
+                font-weight: $font-weight-bold;
+                font-family: $primary-font;
+            }
+            .additional-title{
+              margin-top: 0px;
             }
 
             p{
@@ -63,12 +60,11 @@
                 &:hover {
                   text-decoration: none; 
                   cursor: pointer;
+                  opacity: 0.8;
                 }
               }
 
-            .dont-have-acc {
-                margin-top: -25px; 
-              }
+           
 
             .form-group {
                 display: flex;
@@ -83,6 +79,7 @@
                   color: $text-lighter-black-color;
                   font-family: $primary-font;
                   margin-bottom: 10px;
+       
 
                 }
               
@@ -106,10 +103,118 @@
     }}
 
 
-    .login-btn{
+    .main-login-btn{
         @include big-btn(80%, 4px, $primary-color);
 
     }
 
 
+    .forgot-password{
+      position: absolute;
+      top: 269px;
+      right: 69px;
 
+
+      .forget-password-link {
+        background: none;
+        border: none;
+        color:$primary-color;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: $text-lighter-black-color;
+        font-family: $primary-font;
+        padding: 0;
+
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+
+    }
+
+.remember-me{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: $text-lighter-black-color;
+  font-family: $primary-font;
+  font-size: 0.85rem;
+  gap: 5px;
+  margin-top: -15px;
+
+  input{
+    border-radius: 8px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+
+.form-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: -15px;
+
+  .dont-have-acc{
+    margin-top: 10px;
+  }
+}
+
+
+.back-to-login{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  gap: 5px;
+  bottom: 20px;
+  left: 30px;
+
+  a{
+    background: none;
+        border: none;
+        color:$primary-color;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: $text-lighter-black-color;
+        font-family: $primary-font;
+        padding: 0;
+  }
+
+  img{
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+.text-area-for-massage{
+  
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: $font-base;
+  color: $text-lighter-gray;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.error-message {
+  color: red; 
+  font-weight: $font-weight-bold;
+  font-size: 14px; 
+  margin-top: -15px;
+}

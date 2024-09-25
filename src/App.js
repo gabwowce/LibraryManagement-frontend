@@ -9,13 +9,16 @@ import { UpdateDataProvider } from './context/UpdateDataContext';
 import { AddDataProvider } from './context/AddDataContext';
 import { AuthProvider } from './context/AuthContext';
 
+
 function App() {
+
   return (
 
     <Router>
-      <AuthProvider>
+ 
+        <AuthProvider>
 
-        <ScreenWidthProvider>
+          <ScreenWidthProvider>
               <AddDataProvider>
                 <DataByIdProvider>
                   <UpdateDataProvider>
@@ -39,6 +42,8 @@ function App() {
               
             </ScreenWidthProvider>
         </AuthProvider>
+    
+     
     </Router>
     
    
