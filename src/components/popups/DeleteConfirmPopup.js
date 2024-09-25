@@ -11,7 +11,7 @@ const DeleteConfirmPopup = ({ isOpen, onClose, confirmationMessage, errorMessage
         const timer = setTimeout(() => {
           onClose();
           window.location.reload();  
-        }, 10000);
+        }, 6000);
         return () => clearTimeout(timer);
       }
     }, [isOpen, onClose]);

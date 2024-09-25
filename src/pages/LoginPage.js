@@ -77,7 +77,7 @@ function LoginPage() {
         />
         <label htmlFor="rememberMe">Remember Me</label>
       </div>
-      <div className="form-actions">
+      <div className="login-form-actions">
         <button type="button" className="main-login-btn" onClick={handleLogin}>Log In</button>
         <p className="dont-have-acc">
           Don't have an account? <a href="#" onClick={handleContactUs} className='contact-us'>Contact us</a>

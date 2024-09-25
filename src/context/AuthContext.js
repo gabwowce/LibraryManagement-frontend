@@ -19,13 +19,8 @@ export const AuthProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok) {
-                if (rememberMe) {
-                    sessionStorage.setItem('token', data.token); 
-                    sessionStorage.setItem('user', JSON.stringify(data.user)); 
-                } else {
-                    localStorage.setItem('token', data.token); 
-                    localStorage.setItem('user', JSON.stringify(data.user)); 
-                }
+                sessionStorage.setItem('token', data.token); 
+                sessionStorage.setItem('user', JSON.stringify(data.user)); 
                 setUser(data.user);
                 data.user.role === 'member' ? (navigate('/books')) : (navigate('/'));
             } if (!response.ok) {
