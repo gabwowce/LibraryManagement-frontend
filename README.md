@@ -11,6 +11,12 @@ The frontend of a library management system built with **React**, **SCSS**. It c
 - **React**
 - **SCSS**
 
+## Backend
+
+The backend for this project can be found at:  
+[Library Management Backend](https://github.com/gabwowce/LibraryManagement-backend)
+
+
 ## Screenshots
 
 Here are some screenshots of the application:
